@@ -13,8 +13,9 @@
             <div class="w-full">
                 <div class="flex items-center justify-between">
                     <a href="{{ route('events') }}"
-                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 hover:bg-white/30 text-white backdrop-blur ring-1 ring-white/30 transition">
-                        ← Back
+                        class="inline-flex items-center gap-2 px-4 py-1 rounded-md bg-gradient-to-r from-[#114177] via-[#006A9A] to-[#17A18A] text-white">
+                        <x-bi-arrow-left-short />
+                        <p>Back</p>
                     </a>
 
                 </div>

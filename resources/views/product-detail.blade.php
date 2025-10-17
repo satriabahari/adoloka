@@ -5,14 +5,15 @@
 
     {{-- HERO HEADER --}}
     <section class="relative h-[200px] md:h-[260px] overflow-hidden">
-        <img src="{{ asset('images/header-umkm.jpg') }}" alt="Header"
+        <img src="{{ asset('images/products/heading.png') }}" alt="Header"
             class="absolute inset-0 w-full h-full object-cover">
         <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
 
         <div class="relative container mx-auto h-full flex items-center justify-between px-4">
             <a href="{{ route('events') }}"
-                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 hover:bg-white/30 text-white backdrop-blur ring-1 ring-white/30 transition">
-                ← Back
+                class="inline-flex items-center gap-2 px-4 py-1 rounded-md bg-gradient-to-r from-[#114177] via-[#006A9A] to-[#17A18A] text-white">
+                <x-bi-arrow-left-short />
+                <p>Back</p>
             </a>
             <h1 class="text-3xl md:text-4xl font-bold text-white drop-shadow">Menu Produk UMKM</h1>
         </div>
@@ -29,15 +30,17 @@
 
             {{-- RIGHT DETAILS --}}
             <div>
-                {{-- Rating --}}
-                <div class="flex items-center gap-2 mb-2">
-                    <span class="text-yellow-400 text-lg">★</span>
-                    <span class="text-slate-700 font-semibold">4.7 Star Rating</span>
-                </div>
-
-                {{-- Title & Price --}}
+                {{-- Title --}}
                 <h1 class="text-3xl font-bold text-slate-800 mb-2">{{ $product->name }}</h1>
-                <p class="text-sky-700 text-2xl font-semibold mb-4">Rp{{ number_format($product->price, 0, ',', '.') }}
+
+                {{-- Description (dipindah ke bawah title) --}}
+                <p class="text-slate-600 leading-relaxed mb-4">
+                    {{ $product->description }}
+                </p>
+
+                {{-- Price --}}
+                <p class="text-sky-700 text-2xl font-semibold mb-4">
+                    Rp{{ number_format($product->price, 0, ',', '.') }}
                 </p>
 
                 {{-- Availability --}}
@@ -62,42 +65,17 @@
                         class="bg-blue-800 hover:bg-blue-900 text-white font-semibold px-6 py-2.5 rounded-lg shadow transition disabled:opacity-50 disabled:cursor-not-allowed">
                         BELI SEKARANG
                     </button>
-
-                    <button
-                        class="border-2 border-blue-800 text-blue-800 font-semibold px-6 py-2.5 rounded-lg hover:bg-blue-50 transition">
-                        KERANJANG
-                    </button>
                 </div>
 
                 {{-- Alert Messages --}}
                 <div id="alert-container"></div>
             </div>
         </div>
-
-        {{-- TAB SECTION --}}
-        <div class="mt-10 border-t border-gray-200 pt-6">
-            <div class="flex gap-6 mb-4 border-b border-gray-200">
-                <button class="text-orange-500 font-semibold border-b-2 border-orange-500 pb-2">
-                    DESCRIPTION
-                </button>
-                <button class="text-slate-500 hover:text-slate-800 transition pb-2">
-                    REVIEW
-                </button>
-            </div>
-
-            {{-- Description --}}
-            <div class="space-y-4 text-slate-600 leading-relaxed">
-                <h3 class="text-lg font-semibold text-slate-800">Description</h3>
-                <p>
-                    {{ $product->description }}
-                </p>
-            </div>
-        </div>
     </section>
 
     {{-- Midtrans Snap Script --}}
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('services.midtrans.client_key') }}">
-    </script>
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-client-key="{{ config('services.midtrans.client_key') }}"></script>
 
     <script>
         // Quantity controls
@@ -109,39 +87,26 @@
 
         decreaseBtn.addEventListener('click', () => {
             let value = parseInt(qtyInput.value);
-            if (value > 1) {
-                qtyInput.value = value - 1;
-            }
+            if (value > 1) qtyInput.value = value - 1;
         });
 
         increaseBtn.addEventListener('click', () => {
             let value = parseInt(qtyInput.value);
             let max = parseInt(qtyInput.max);
-            if (value < max) {
-                qtyInput.value = value + 1;
-            }
+            if (value < max) qtyInput.value = value + 1;
         });
 
         // Buy Now - Midtrans Integration
         buyNowBtn.addEventListener('click', async () => {
             const quantity = parseInt(qtyInput.value);
 
-            if (quantity < 1) {
-                showAlert('Jumlah minimal 1', 'error');
-                return;
-            }
+            if (quantity < 1) return showAlert('Jumlah minimal 1', 'error');
+            if (quantity > {{ $product->stock }}) return showAlert('Stok tidak mencukupi', 'error');
 
-            if (quantity > {{ $product->stock }}) {
-                showAlert('Stok tidak mencukupi', 'error');
-                return;
-            }
-
-            // Disable button
             buyNowBtn.disabled = true;
             buyNowBtn.textContent = 'Memproses...';
 
             try {
-                // Create order and get snap token
                 const response = await fetch('{{ route('order.create', $product) }}', {
                     method: 'POST',
                     headers: {
@@ -156,21 +121,14 @@
                 const data = await response.json();
 
                 if (data.success) {
-                    // Open Midtrans Snap popup
                     window.snap.pay(data.snap_token, {
-                        onSuccess: function(result) {
-                            window.location.href = '{{ route('order.success') }}?order_id=' + data
-                                .order_id;
-                        },
-                        onPending: function(result) {
-                            window.location.href = '{{ route('order.pending') }}?order_id=' + data
-                                .order_id;
-                        },
-                        onError: function(result) {
-                            window.location.href = '{{ route('order.failed') }}?order_id=' + data
-                                .order_id;
-                        },
-                        onClose: function() {
+                        onSuccess: () => window.location.href =
+                            '{{ route('order.success') }}?order_id=' + data.order_id,
+                        onPending: () => window.location.href =
+                            '{{ route('order.pending') }}?order_id=' + data.order_id,
+                        onError: () => window.location.href = '{{ route('order.failed') }}?order_id=' +
+                            data.order_id,
+                        onClose: () => {
                             showAlert('Pembayaran dibatalkan', 'warning');
                             buyNowBtn.disabled = false;
                             buyNowBtn.textContent = 'BELI SEKARANG';
@@ -199,10 +157,7 @@
                     ${message}
                 </div>
             `;
-
-            setTimeout(() => {
-                alertContainer.innerHTML = '';
-            }, 5000);
+            setTimeout(() => alertContainer.innerHTML = '', 5000);
         }
     </script>
-</x-app-layout>s
+</x-app-layout>

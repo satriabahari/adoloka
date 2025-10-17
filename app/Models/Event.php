@@ -38,13 +38,13 @@ class Event extends Model implements HasMedia
     {
         $this
             ->addMediaCollection('event')
-            ->useFallbackUrl(asset('images/fallback.png'))
+            ->useFallbackUrl(asset('images/placeholder.png'))
             ->singleFile();
     }
 
     public function getImageUrlAttribute(): string
     {
-        return $this->getFirstMediaUrl('event') ?: asset('images/fallback.png');
+        return $this->getFirstMediaUrl('event') ?: asset('images/placeholder.png');
     }
 
     // === SCOPES ===

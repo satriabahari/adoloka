@@ -1,4 +1,4 @@
-<div class="w-full">
+<div class="w-full ">
     <!-- KARTU: Info UMKM -->
     <div
         class="rounded-2xl bg-white/95 backdrop-blur ring-1 ring-gray-200 shadow-[0_16px_40px_rgba(17,65,119,0.15)] p-3 md:p-4">
@@ -109,6 +109,40 @@
                 <textarea rows="4" wire:model.live="deskripsi"
                     class="w-full rounded-lg border-gray-300 focus:ring-sky-500 focus:border-sky-500"></textarea>
             @endif
+        </div>
+
+        <div class="mt-4 rounded-xl ring-1 ring-gray-200 bg-white shadow-sm">
+            <div class="p-5 md:p-6">
+                <h4 class="text-lg font-semibold text-gray-900 mb-4">Status Produk</h4>
+
+                <div class="space-y-4">
+                    <!-- Halal Status -->
+                    <div class="flex items-center justify-between">
+                        <p class="text-sm text-gray-700">Halal Status</p>
+                        <span
+                            class="inline-flex items-center text-xs font-medium px-3 py-1 rounded-full bg-emerald-100 text-emerald-700">
+                            Verified
+                        </span>
+                    </div>
+
+                    <!-- BPOM Details -->
+                    <div class="flex items-center justify-between">
+                        <p class="text-sm text-gray-700">BPOM Details</p>
+                        <button type="button"
+                            class="text-xs px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700">
+                            View
+                        </button>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <p class="text-sm text-gray-700">NIB</p>
+                        <button type="button"
+                            class="text-xs px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700">
+                            View
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

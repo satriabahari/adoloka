@@ -5,7 +5,7 @@
     <div class="flex items-center justify-between mb-6">
         <div class="flex items-center gap-4">
             <div class="h-24 w-24 rounded-full ring-4 ring-white shadow-md overflow-hidden">
-                <img src="{{ asset('avatar-profile.png') }}" alt="Avatar" class="h-full w-full object-cover">
+                <img src="{{ asset('/images/avatar-profile.png') }}" alt="Avatar" class="h-full w-full object-cover">
             </div>
         </div>
 
@@ -136,30 +136,6 @@
     </div>
 
     <!-- KARTU: Status Produk -->
-    <div class="rounded-xl ring-1 ring-gray-200 bg-white shadow-sm">
-        <div class="p-5 md:p-6">
-            <h4 class="text-lg font-semibold text-gray-900 mb-4">Status Produk</h4>
-
-            <div class="space-y-4">
-                <!-- Halal Status -->
-                <div class="flex items-center justify-between">
-                    <p class="text-sm text-gray-700">Halal Status</p>
-                    <span
-                        class="inline-flex items-center text-xs font-medium px-3 py-1 rounded-full bg-emerald-100 text-emerald-700">
-                        Verified
-                    </span>
-                </div>
-
-                <!-- BPOM Details -->
-                <div class="flex items-center justify-between">
-                    <p class="text-sm text-gray-700">BPOM Details</p>
-                    <button type="button"
-                        class="text-xs px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700">
-                        View
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
 </div>

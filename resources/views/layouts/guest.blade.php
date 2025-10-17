@@ -14,21 +14,19 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('styles')
 </head>
 
 <body class="font-sans text-gray-900 antialiased">
-    <div class="min-h-screen flex sm:justify-center items-center pt-6 sm:pt-0 bg-[#F7FCFF] pr-12">
-        <div class="w-1/2">
-            <a href="/" wire:navigate>
-                {{-- <x-application-logo class="w-20 h-20 fill-current text-gray-500" /> --}}
-                <img src="/images/Hero.png" width="450"/>
-            </a>
-        </div>
+        <livewire:layout.navigation />
+    
 
-        <div class="w-1/2 mt-6 px-6 py-4 bg-[#F7FCFF] overflow-hidden sm:rounded-lg">
+    <div class="min-h-screen max-w-7xl m-auto flex sm:justify-center items-center pt-6 sm:pt-0 bg-white pr-12">
+        <div class="w-full mt-6 px-6 py-4 bg-white overflow-hidden sm:rounded-lg">
             {{ $slot }}
         </div>
     </div>
+    @stack('scripts')
 </body>
 
 </html>

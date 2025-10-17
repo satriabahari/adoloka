@@ -11,7 +11,7 @@
     $detailUrl = $event ? route('events.show', $event) : ($slug ? route('events.show', $slug) : '#');
 @endphp
 
-<div class="bg-white/95 rounded-2xl shadow-sm ring-1 ring-slate-100 overflow-hidden">
+<div class="bg-white/95 rounded-2xl shadow-lg ring-1 ring-slate-100 overflow-hidden">
     <div class="grid md:grid-cols-[320px,1fr] items-stretch">
         {{-- Image --}}
         <div class="p-6 md:p-8">

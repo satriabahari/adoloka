@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="container mx-auto px-4 pt-10 pb-16">
+    <div class="container mx-auto px-16 pt-12 pb-16">
         <a href="{{ route('home') }}"
             class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-sky-200 text-sky-700 bg-white shadow-sm hover:bg-sky-50 transition mb-6">
             <span class="inline-block -ml-1">←</span> Back
