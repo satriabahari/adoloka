@@ -60,17 +60,13 @@ Route::post('/payment/notification', [PaymentController::class, 'notification'])
 Route::get('/payment/finish', [PaymentController::class, 'finish'])->name('payment.finish');
 Route::get('/payment/status/{orderNumber}', [PaymentController::class, 'status'])->name('payment.status');
 
-Route::get('/profile/test', Profile::class)
+Route::get('/profile', Profile::class)
     ->middleware(['auth'])
     ->name('profile');;
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
-
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile-old');
 
 Route::get('/auth/redirect', function () {
     return Socialite::driver('google')->redirect();
