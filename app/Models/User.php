@@ -11,11 +11,13 @@ use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
+class User extends Authenticatable implements FilamentUser, HasName, HasAvatar, HasMedia
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -25,9 +27,12 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
     protected $fillable = [
         'first_name',
         'last_name',
-        'email',
+        'about',
         'phone_number',
+        'email',
         'password',
+        'role_id'
+        // 'phone',
     ];
 
     public function products()
@@ -38,6 +43,11 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
     public function umkm()
     {
         return $this->hasOne(Umkm::class);
+    }
+
+    public function role()
+    {
+        return $this->hasOne(Role::class);
     }
 
     /**
@@ -86,5 +96,17 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
     {
         $name = $this->getFilamentName();
         return 'https://ui-avatars.com/api/?name=' . urlencode($name);
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('user')
+            ->useFallbackUrl(asset('images/avatar-profile.png'))
+            ->singleFile();
+    }
+
+    public function getAvatarUrlAttribute(): string
+    {
+        return $this->getFirstMediaUrl('user') ?: asset('images/avatar-profile.png');
     }
 }
