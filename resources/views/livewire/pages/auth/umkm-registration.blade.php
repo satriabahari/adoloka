@@ -8,7 +8,7 @@
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Nama Usaha</label>
                 <input type="text" wire:model.defer="business_name" placeholder="Terpopak-makyus"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition">
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition">
                 @error('business_name')
                     <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
                 @enderror
@@ -16,7 +16,7 @@
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Usaha</label>
                 <input type="text" wire:model.defer="business_type" placeholder="Makanan"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition">
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition">
                 @error('business_type')
                     <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
                 @enderror
@@ -27,7 +27,7 @@
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">Daerah/Usaha</label>
             <input type="text" wire:model.defer="city" placeholder="Kota Baru"
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition">
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition">
             @error('city')
                 <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
             @enderror
@@ -44,7 +44,7 @@
                     <div id="map-placeholder"
                         class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
                         <div class="text-center">
-                            <i class="fas fa-map-marker-alt text-5xl text-teal-500 mb-3"></i>
+                            <i class="fas fa-map-marker-alt text-5xl text-primary mb-3"></i>
                             <p class="text-sm text-gray-600 font-medium">Klik peta untuk pilih lokasi</p>
                             <p class="text-xs text-gray-500 mt-1">Atau seret marker</p>
                         </div>
@@ -64,7 +64,7 @@
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Deskripsi Usaha</label>
                 <textarea wire:model.defer="business_description" rows="7" placeholder="Ceritakan tentang usaha Anda..."
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none resize-none transition"></textarea>
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none resize-none transition"></textarea>
             </div>
         </div>
 

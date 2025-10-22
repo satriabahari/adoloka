@@ -6,6 +6,7 @@ use App\Models\Umkm;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UmkmSeeder extends Seeder
 {
@@ -14,18 +15,21 @@ class UmkmSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::first() ?? User::factory()->create([
-            'first_name' => 'Satria',
-            'last_name' => 'Bahari',
-            'email' => 'satria@example.com',
-            'password' => bcrypt('password'),
-        ]);
+        $user = User::firstOrCreate(
+            ['email' => 'satria@gmail.com'],
+            [
+                'first_name'   => 'Satria',
+                'last_name'    => 'Bahari',
+                'phone_number' => '082183340920',
+                'password'     => Hash::make('satria'),
+            ]
+        );
 
         $umkms = [
             [
                 'user_id' => $user->id,
-                'business_name' => 'Pisang Melet',
-                'business_type' => 'Makanan dan Minuman',
+                'name' => 'Pisang Melet',
+                'type' => 'Makanan dan Minuman',
                 'city' => 'Jambi',
                 'latitude' => -1.6101223,
                 'longitude' => 103.6148452,
@@ -34,8 +38,8 @@ class UmkmSeeder extends Seeder
             ],
             [
                 'user_id' => $user->id,
-                'business_name' => 'AdoLoka Craft',
-                'business_type' => 'Kerajinan Tangan',
+                'name' => 'AdoLoka Craft',
+                'type' => 'Kerajinan Tangan',
                 'city' => 'Muaro Jambi',
                 'latitude' => -1.6783214,
                 'longitude' => 103.5129371,
@@ -44,8 +48,8 @@ class UmkmSeeder extends Seeder
             ],
             [
                 'user_id' => $user->id,
-                'business_name' => 'Kopi Nusantara',
-                'business_type' => 'Minuman',
+                'name' => 'Kopi Nusantara',
+                'type' => 'Minuman',
                 'city' => 'Kota Jambi',
                 'latitude' => -1.599883,
                 'longitude' => 103.618912,
