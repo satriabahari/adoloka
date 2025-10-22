@@ -2,36 +2,7 @@
     @vite('resources/css/registration.css')
 @endpush
 
-<div class="w-full">
-
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-3">
-                    <div
-                        class="w-10 h-10 bg-gradient-to-br from-primary to-primary-dark rounded-full flex items-center justify-center shadow-lg">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                        </svg>
-                    </div>
-                    <span class="font-bold text-xl text-gray-900">UMKM Platform</span>
-                </div>
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#" class="text-gray-700 hover:text-primary-dark transition">Event</a>
-                    <a href="#" class="text-gray-700 hover:text-primary-dark transition">UMKM</a>
-                    <a href="#" class="text-gray-700 hover:text-primary-dark transition">Member</a>
-                </nav>
-                <div class="flex space-x-3">
-                    <a href="/login"
-                        class="px-4 py-2 text-gray-700 hover:text-primary-dark transition font-medium">Masuk</a>
-                    <a href="/register"
-                        class="px-6 py-2 bg-gradient-to-r from-primary to-primary-dark text-white rounded-lg hover:from-primary-dark hover:to-teal-700 transition shadow-md hover:shadow-lg font-medium">Daftar</a>
-                </div>
-            </div>
-        </div>
-    </header>
-
+<div class="w-full pt-8">
     <!-- Progress Indicator -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="max-w-2xl mx-auto">
@@ -134,10 +105,10 @@
                                             rx="3" />
                                         <rect x="213" y="430" width="24" height="28" fill="#ff6b35"
                                             rx="3" />
-                                        <line x1="163" y1="442" x2="187" y2="442"
-                                            stroke="white" stroke-width="3" opacity="0.8" />
-                                        <line x1="213" y1="442" x2="237" y2="442"
-                                            stroke="white" stroke-width="3" opacity="0.8" />
+                                        <line x1="163" y1="442" x2="187" y2="442" stroke="white"
+                                            stroke-width="3" opacity="0.8" />
+                                        <line x1="213" y1="442" x2="237" y2="442" stroke="white"
+                                            stroke-width="3" opacity="0.8" />
 
                                         <!-- Body/Skirt -->
                                         <path d="M 200 220 L 155 350 L 245 350 Z" fill="#5865c3" />

@@ -4,6 +4,7 @@ namespace App\Livewire\Pages\Profile;
 
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use function Livewire\Volt\layout;
 
 class Profile extends Component
 {
