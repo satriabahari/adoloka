@@ -3,20 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
     public function index()
     {
-        // Ambil semua event mendatang beserta media-nya
-        $events = Event::with('media')->upcoming()->get();
+        $events = Event::with('media')
+            ->upcoming()
+            ->paginate(12);
 
         return view('events', compact('events'));
     }
 
-    public function show(Event $event) // pakai slug (getRouteKeyName)
+    public function show(Event $event)
     {
-        $event->load('media'); // biar tidak N+1
+        // Eager load registrations dengan media untuk performa lebih baik
+        $event->load([
+            'registrations' => function ($query) {
+                $query->latest();
+            },
+            'registrations.media'
+        ]);
+
         return view('event-detail', compact('event'));
     }
 }

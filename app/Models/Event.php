@@ -9,6 +9,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Event extends Model implements HasMedia
 {
     use InteractsWithMedia;
+
     protected $fillable = [
         'title',
         'slug',
@@ -27,6 +28,12 @@ class Event extends Model implements HasMedia
         'is_strategic_location' => 'boolean',
     ];
 
+    // === RELATIONSHIPS ===
+    public function registrations()
+    {
+        return $this->hasMany(EventRegistration::class);
+    }
+
     // Gunakan slug untuk route model binding
     public function getRouteKeyName(): string
     {
@@ -36,26 +43,23 @@ class Event extends Model implements HasMedia
     // === MEDIA LIBRARY ===
     public function registerMediaCollections(): void
     {
-        $this
-            ->addMediaCollection('event')
+        $this->addMediaCollection('poster')
             ->useFallbackUrl(asset('images/placeholder.png'))
             ->singleFile();
     }
 
     public function getImageUrlAttribute(): string
     {
-        return $this->getFirstMediaUrl('event') ?: asset('images/placeholder.png');
+        return $this->getFirstMediaUrl('poster') ?: asset('images/placeholder.png');
     }
 
     // === SCOPES ===
-    // ambil event yang tanggal berakhirnya masih di masa depan (belum lewat).
     public function scopeUpcoming($query)
     {
         return $query->whereDate('end_date', '>=', now()->toDateString())
             ->orderBy('start_date');
     }
 
-    // ambil event yang sedang berlangsung hari ini.
     public function scopeOngoing($query)
     {
         $today = now()->toDateString();
@@ -63,15 +67,12 @@ class Event extends Model implements HasMedia
             ->whereDate('end_date', '>=', $today);
     }
 
-    // Ambil event berdasarkan kategori tertentu
     public function scopeCategory($query, string $category)
     {
         return $query->where('category', $category);
     }
 
-    // === ACCESSOR TANGGAL ===
-    // Jika event 1 hari → tampilkan 23 Desember 2025
-    // Jika event rentang tanggal → tampilkan 23 - 30 Desember 2025
+    // === ACCESSOR ===
     public function getDateRangeAttribute(): string
     {
         $start = $this->start_date;
