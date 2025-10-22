@@ -8,7 +8,7 @@
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Nama Produk</label>
                 <input type="text" wire:model.defer="product_name" placeholder="Terpopak-makyus"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition">
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition">
                 @error('product_name')
                     <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
                 @enderror
@@ -16,7 +16,7 @@
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Produk</label>
                 <input type="text" wire:model.defer="product_type" placeholder="Makanan"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition">
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition">
                 @error('product_type')
                     <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
                 @enderror
@@ -27,7 +27,7 @@
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
             <select wire:model.defer="product_category"
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition">
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition">
                 <option value="">-- Pilih Kategori --</option>
                 @foreach ($categories as $cat)
                     <option value="{{ $cat['id'] }}">{{ $cat['name'] }}</option>
@@ -43,7 +43,7 @@
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">Asal Produk</label>
             <input type="text" value="{{ $city ?: 'Kota Baru' }}" readonly
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-600 outline-none cursor-not-allowed">
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-600 focus:ring-2 focus:ring-primary focus:border-transparent outline-none cursor-not-allowed">
             <p class="text-xs text-gray-500 mt-1">
                 <i class="fas fa-info-circle"></i> Lokasi diambil dari data UMKM Anda
             </p>
@@ -55,7 +55,7 @@
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Foto Produk</label>
                 <div
-                    class="relative w-full h-52 border-2 border-dashed border-gray-300 rounded-lg bg-gray-50 overflow-hidden transition hover:border-teal-400 hover:bg-teal-50">
+                    class="relative w-full h-52 border-2 border-dashed border-gray-300 rounded-lg bg-sky-50 overflow-hidden transition hover:border-primary hover:bg-sky-50">
                     @if ($product_photo)
                         <!-- Image Preview -->
                         <div class="relative w-full h-full">
@@ -75,8 +75,9 @@
                             class="absolute inset-0 flex flex-col items-center justify-center cursor-pointer group">
                             <div class="text-center transition group-hover:scale-105">
                                 <div
-                                    class="w-16 h-16 mx-auto mb-3 bg-teal-100 rounded-full flex items-center justify-center group-hover:bg-teal-200 transition">
-                                    <i class="fas fa-image text-3xl text-teal-600"></i>
+                                    class="w-16 h-16 mx-auto mb-3 bg-sky-200 rounded-full flex items-center justify-center group-hover:bg-sky-300 transition">
+                                    {{-- <i class="fas fa-image text-3xl text-teal-600"></i> --}}
+                                    <x-heroicon-s-photo class="w-6 h-6 text-white" />
                                 </div>
                                 <p class="text-sm text-gray-600 font-medium mb-1">Klik untuk upload foto</p>
                                 <p class="text-xs text-gray-500">PNG, JPG, JPEG (Max 2MB)</p>
@@ -95,7 +96,7 @@
 
                 <!-- Loading Indicator -->
                 <div wire:loading wire:target="product_photo" class="mt-2">
-                    <div class="flex items-center text-sm text-teal-600">
+                    <div class="flex items-center text-sm text-primary">
                         <svg class="animate-spin h-4 w-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
@@ -109,7 +110,7 @@
                 </div>
 
                 @if ($product_photo && !$errors->has('product_photo'))
-                    <div class="mt-2 flex items-center text-xs text-green-600">
+                    <div class="mt-2 flex items-center text-xs text-primary-dark">
                         <i class="fas fa-check-circle mr-1"></i>
                         <span>Foto berhasil dipilih</span>
                     </div>
@@ -121,7 +122,7 @@
                 <label class="block text-sm font-medium text-gray-700 mb-2">Deskripsi Produk</label>
                 <textarea wire:model.defer="product_description" rows="7"
                     placeholder="Ceritakan tentang produk Anda, keunggulan, bahan baku, dll..."
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none resize-none transition"></textarea>
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none resize-none transition"></textarea>
                 <p class="text-xs text-gray-500 mt-1">
                     <i class="fas fa-lightbulb"></i> Deskripsi yang menarik akan menarik lebih banyak pembeli
                 </p>
@@ -131,7 +132,7 @@
         <!-- Buttons -->
         <div class="flex gap-3 pt-4">
             <button type="submit"
-                class="flex-1 bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3.5 rounded-lg transition duration-200 shadow-sm hover:shadow-md flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+                class="flex-1 bg-primary hover:bg-primary-hover text-white font-semibold py-3.5 rounded-lg transition duration-200 shadow-sm hover:shadow-md flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
                 wire:loading.attr="disabled" wire:target="submit">
                 <span wire:loading.remove wire:target="submit">
                     <i class="fas fa-check-circle mr-2"></i>Buat Akun
@@ -157,7 +158,7 @@
 
         <!-- Login Link -->
         <p class="text-center text-sm text-gray-600 pt-2">
-            Already have an account? <a href="/login" class="text-teal-600 hover:text-teal-700 font-medium">Login</a>
+            Already have an account? <a href="/login" class="text-primary hover:text-primary-hover font-medium">Login</a>
         </p>
     </form>
 </div>
@@ -231,11 +232,11 @@
             });
 
             function highlight(e) {
-                dropZone.classList.add('border-teal-500', 'bg-teal-50');
+                dropZone.classList.add('border-primary', 'bg-sky-50');
             }
 
             function unhighlight(e) {
-                dropZone.classList.remove('border-teal-500', 'bg-teal-50');
+                dropZone.classList.remove('border-primary', 'bg-sky-50');
             }
 
             dropZone.addEventListener('drop', handleDrop, false);
