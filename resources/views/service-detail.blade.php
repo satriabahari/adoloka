@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="max-w-5xl mx-auto pt-12">
         <!-- Back Button -->
         <button onclick="window.history.back()"
             class="flex items-center gap-2 text-sky-600 hover:text-sky-700 transition-colors mb-8">
@@ -13,16 +13,7 @@
         <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
             <!-- Header Image -->
             <div class="bg-gradient-to-br from-sky-400 to-sky-600 h-64 flex items-center justify-center relative">
-                <svg class="w-32 h-32 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    @if ($service->category->slug === 'branding')
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-                    @else
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                    @endif
-                </svg>
-
+                <img src="{{ $service->image_url }}" alt="{{ $service->name }}" class="w-full h-full object-cover ">
                 <!-- Category Badge -->
                 <div class="absolute top-6 left-6">
                     <span class="px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium">

@@ -3,7 +3,7 @@
 @endpush
 
 <x-app-layout>
-    <div class="max-w-6xl mx-auto px-4 py-8">
+    <div class="max-w-7xl mx-auto pt-12">
         <!-- Header -->
         <div class="mb-8">
             <a href="{{ route('home') }}"
@@ -50,13 +50,15 @@
                 <div id="container-{{ $category->slug }}"
                     class="flex gap-6 overflow-x-auto hide-scrollbar scroll-smooth pb-4">
                     @foreach ($category->services as $service)
-                        <div class="flex-shrink-0 w-80">
+                        <div class="flex-shrink-0 w-80 group">
                             <div
                                 class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col">
                                 <!-- Service Image -->
                                 <div
-                                    class="bg-gradient-to-br from-sky-400 to-sky-600 h-48 flex items-center justify-center">
-                                    <svg class="w-20 h-20 text-white opacity-80" fill="none" stroke="currentColor"
+                                    class="h-56 overflow-hidden bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center">
+                                    <img src="{{ $service->image_url }}" alt="{{ $service->name }}"
+                                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                    {{-- <svg class="w-20 h-20 text-white opacity-80" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24">
                                         @if ($category->slug === 'branding')
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -65,7 +67,7 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
                                         @endif
-                                    </svg>
+                                    </svg> --}}
                                 </div>
 
                                 <!-- Service Content -->

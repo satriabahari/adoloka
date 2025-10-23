@@ -29,50 +29,58 @@ class ServiceSeeder extends Seeder
         $umkm = Umkm::firstOrCreate(
             ['user_id' => $user->id],
             [
-                'name' => 'UMKM Satria',
-                'type' => 'Branding & Promosi',
+                'name' => 'Pisang Melet',
+                'type' => 'Kuliner',
                 'city' => 'Jambi',
+                'latitude' => -1.6101223,
+                'longitude' => 103.6148452,
+                'address' => 'Jl. Sultan Thaha No.45, Jambi',
+                'description' => 'Menjual pisang nugget dengan berbagai topping kekinian dan harga terjangkau.',
             ]
         );
 
         // --- 3. Buat kategori layanan ---
-        $branding = ServiceCategory::firstOrCreate(
-            ['slug' => 'branding'],
-            ['name' => 'Branding']
-        );
+        $categories = [
+            'Branding',
+            'Promosi',
+        ];
 
-        $promosi = ServiceCategory::firstOrCreate(
-            ['slug' => 'promosi'],
-            ['name' => 'Promosi']
-        );
+        foreach ($categories as $name) {
+            ServiceCategory::firstOrCreate(
+                ['slug' => Str::slug($name)],
+                ['name' => $name]
+            );
+        }
 
         // --- 4. Data layanan ---
-        $brandingServices = [
+        $services = [
             [
                 'name' => 'Desain Logo Profesional',
                 'description' => 'Desain logo modern dengan 2x revisi dan file master (AI/PSD/SVG).',
+                'image' => 'service-1.jpg',
                 'price' => 100000,
+                'category' => 'Branding',
                 'revision_max' => 2,
                 'delivery_days_min' => 3,
                 'delivery_days_max' => 5,
-                'has_brand_identity' => true,
             ],
             [
                 'name' => 'Brand Guidelines Mini',
                 'description' => 'Panduan dasar logo usage, warna, tipografi, dan contoh aplikasi.',
+                'image' => 'service-2.jpg',
                 'price' => 150000,
+                'category' => 'Branding',
                 'revision_max' => 2,
                 'delivery_days_min' => 3,
                 'delivery_days_max' => 5,
                 'has_brand_identity' => true,
             ],
-        ];
-
-        $promosiServices = [
             [
                 'name' => 'Foto Katalog Produk',
                 'description' => 'Paket foto studio profesional untuk katalog produk UMKM.',
                 'price' => 100000,
+                'category' => 'Promosi',
+                'image' => 'service-3.jpg',
                 'unit' => '/10 Foto',
                 'revision_max' => 1,
                 'delivery_days_min' => 2,
@@ -82,43 +90,53 @@ class ServiceSeeder extends Seeder
                 'name' => 'Desain Poster Promosi',
                 'description' => 'Poster A3/A4 untuk promo offline/online siap cetak & upload.',
                 'price' => 75000,
+                'category' => 'Promosi',
+                'image' => 'service-4.jpg',
                 'unit' => '/Poster',
                 'revision_max' => 2,
                 'delivery_days_min' => 1,
                 'delivery_days_max' => 2,
+                'has_brand_identity' => true,
             ],
         ];
 
         // --- 5. Simpan layanan branding ---
-        foreach ($brandingServices as $data) {
-            Service::updateOrCreate(
-                ['name' => $data['name']],
-                [
-                    ...$data,
-                    'slug' => Str::slug($data['name']),
-                    'category_id' => $branding->id,
-                    'user_id' => $user->id,
-                    'umkm_id' => $umkm->id,
-                    'consultation_link' => 'https://wa.me/6281234567890',
-                    'is_active' => true,
-                ]
-            );
-        }
+        foreach ($services as $data) {
+            $category = ServiceCategory::where('name', $data['category'])->first();
 
-        // --- 6. Simpan layanan promosi ---
-        foreach ($promosiServices as $data) {
-            Service::updateOrCreate(
-                ['name' => $data['name']],
+            $slug = Str::slug($data['name']);
+            $imagePath = public_path('images/services/' . $data['image']);
+
+            $service = Service::updateOrCreate(
+                ['slug' => $slug],
                 [
-                    ...$data,
+                    'name' => $data['name'],
+                    'description' => $data['description'],
+                    'price' => $data['price'],
+                    'unit' => $data['unit'] ?? null,
                     'slug' => Str::slug($data['name']),
-                    'category_id' => $promosi->id,
+                    'category_id' => $category->id,
+                    'has_brand_identity' => $data['has_brand_identity'] ?? false,
+                    'revision_max' => $data['revision_max'],
+                    'delivery_days_min' => $data['delivery_days_min'],
+                    'delivery_days_max' => $data['delivery_days_max'],
                     'user_id' => $user->id,
                     'umkm_id' => $umkm->id,
                     'consultation_link' => 'https://wa.me/6281234567890',
                     'is_active' => true,
                 ]
             );
+
+            // Bersihkan media lama biar tidak double
+            $service->clearMediaCollection('service');
+
+            // Upload gambar jika file ada
+            if (file_exists($imagePath)) {
+                $service
+                    ->addMedia($imagePath)
+                    ->preservingOriginal()
+                    ->toMediaCollection('service');
+            }
         }
     }
 }

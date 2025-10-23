@@ -33,6 +33,10 @@ class Service extends Model implements HasMedia
         'is_active' => 'bool',
     ];
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
     protected static function booted(): void
     {
         static::creating(function (Service $service) {
@@ -67,7 +71,6 @@ class Service extends Model implements HasMedia
         $service->slug = $slug;
     }
 
-
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('service')
@@ -80,6 +83,7 @@ class Service extends Model implements HasMedia
         return $this->getFirstMediaUrl('service') ?: asset('images/placeholder.png');
     }
 
+    // === RELATIONS ===
     public function category()
     {
         return $this->belongsTo(ServiceCategory::class, 'category_id');
