@@ -19,7 +19,8 @@ Route::get('events', [EventController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('events');
 
-Route::get('events/{event}', [EventController::class, 'show'])
+Route::get('events/{event:slug}', [EventController::class, 'show'])
+    ->middleware(['auth', 'verified'])
     ->name('events.show');
 
 // Product Routes

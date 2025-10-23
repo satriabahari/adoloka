@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Event;
-use Illuminate\Http\Request;
+use App\Models\ProductCategory;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $events = Event::latest()->take(3)->get();
-        $categories = Category::orderBy('name')->get();
+        $events = Event::with(['media', 'categories'])
+            ->upcoming()
+            ->take(3)
+            ->get();
+
+        $categories = ProductCategory::orderBy('name')->get();
 
         return view('home', compact('events', 'categories'));
     }

@@ -1,8 +1,10 @@
-    <div class="container mx-auto px-4 py-12 ">
-        <button
-            class="flex gap-2 mb-8 items-center bg-gradient-to-r from-[rgb(17,65,119)] via-[#006A9A] to-[#17A18A] text-white py-1 px-4 rounded-md">
-            <x-bi-arrow-left-short />
-            <p>Back</p>
+    <div class="container mx-auto pt-12 max-w-6xl">
+        <button onclick="window.history.back()"
+            class="flex items-center gap-2 text-sky-600 hover:text-sky-700 transition-colors mb-8 animate-fade-in">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            <span class="font-medium">Kembali</span>
         </button>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

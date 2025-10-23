@@ -8,9 +8,9 @@
     @endif
 
     <!-- HEADER: Avatar + Tombol Upload -->
-    <div class="flex items-center justify-between">
+    <div class="flex items-center justify-between mb-4">
         <div class="flex items-center gap-4">
-            <div class="h-24 w-24 rounded-full ring-4 ring-white shadow-md overflow-hidden">
+            <div class="h-24 w-24 rounded-full overflow-hidden">
                 <img src="{{ Auth::user()->avatar_url }}" alt="Avatar" class="h-full w-full object-cover">
             </div>
         </div>
@@ -226,7 +226,7 @@
         <div class="p-5 md:p-6">
             <div class="flex items-center justify-between mb-3">
                 <h4 class="text-lg font-semibold text-gray-900">
-                    About <span class="text-sky-700">{{ explode(' ', $name)[0] }}</span>
+                    About
                 </h4>
 
                 @if (!$editing['about'])

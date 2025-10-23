@@ -1,6 +1,6 @@
 <div class="relative bg-white overflow-hidden">
     <!-- Gambar background -->
-    <img src="/images/home/hero.png" alt="Background" class="w-full h-auto object-cover block select-none bg-white"
+    <img src="/images/home/hero.jpg" alt="Background" class="w-full h-screen object-cover block select-none bg-white"
         style="box-shadow: none; border: none;">
 
     <div class="absolute inset-0 bg-gradient-to-b from-sky-900/50 via-sky-800/40 to-sky-900/60"></div>
