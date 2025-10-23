@@ -12,6 +12,7 @@ class EventRegistration extends Model implements HasMedia
 
     protected $fillable = [
         'event_id',
+        'event_category_id',
         'umkm_brand_name',
         'partner_address',
         'business_type',
@@ -26,15 +27,40 @@ class EventRegistration extends Model implements HasMedia
         return $this->belongsTo(Event::class);
     }
 
+    public function eventCategory()
+    {
+        return $this->belongsTo(EventCategory::class);
+    }
+
+    // === MEDIA LIBRARY ===
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('brand_photo')
-            ->singleFile();
+        $this->addMediaCollection('event_registration')
+            ->useFallbackUrl(asset('images/placeholder.png'));
+    }
 
-        $this->addMediaCollection('product_photo')
-            ->singleFile();
+    // ---------- Accessors opsional ----------
+    public function getBrandPhotoUrlAttribute(): ?string
+    {
+        return optional(
+            $this->getMedia('event_registration')
+                ->first(fn($m) => ($m->getCustomProperty('kind') === 'brand'))
+        )?->getUrl();
+    }
 
-        $this->addMediaCollection('ktp_photo')
-            ->singleFile();
+    public function getProductPhotoUrlAttribute(): ?string
+    {
+        return optional(
+            $this->getMedia('event_registration')
+                ->first(fn($m) => ($m->getCustomProperty('kind') === 'product'))
+        )?->getUrl();
+    }
+
+    public function getKtpPhotoUrlAttribute(): ?string
+    {
+        return optional(
+            $this->getMedia('event_registration')
+                ->first(fn($m) => ($m->getCustomProperty('kind') === 'ktp'))
+        )?->getUrl();
     }
 }

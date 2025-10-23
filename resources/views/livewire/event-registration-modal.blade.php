@@ -74,12 +74,18 @@
                             <label class="block text-sm font-semibold text-slate-700 mb-2">
                                 Jenis <span class="text-red-500">*</span>
                             </label>
-                            <input type="text" wire:model="business_type"
+                            <select wire:model="event_category_id"
                                 class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition">
-                            @error('business_type')
+                                <option value="">Pilih jenis / kategori...</option>
+                                @foreach ($categories as $cat)
+                                    <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('event_category_id')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
+
 
                         <!-- Nama Pemilik -->
                         <div>

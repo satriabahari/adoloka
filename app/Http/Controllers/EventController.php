@@ -7,23 +7,29 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $events = Event::with('media')
+        // /events?categories=umkm-kuliner,umkm-perkebunan
+        $cats = $request->filled('categories')
+            ? array_map('trim', explode(',', $request->query('categories')))
+            : null;
+
+        $events = Event::query()
+            ->with(['media', 'categories'])
             ->upcoming()
-            ->paginate(12);
+            ->when($cats, fn($q) => $q->categories($cats))
+            ->paginate(12)
+            ->withQueryString();
 
         return view('events', compact('events'));
     }
 
     public function show(Event $event)
     {
-        // Eager load registrations dengan media untuk performa lebih baik
         $event->load([
-            'registrations' => function ($query) {
-                $query->latest();
-            },
-            'registrations.media'
+            'categories',
+            'registrations' => fn($q) => $q->latest(),
+            'registrations.media',
         ]);
 
         return view('event-detail', compact('event'));

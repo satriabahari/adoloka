@@ -1,6 +1,31 @@
 @props(['title', 'description' => null, 'image' => null, 'chips' => [], 'event' => null])
 
 @php
+    // Ubah semua chips menjadi list of ['key' => ..., 'value' => ...]
+    // - ['categories' => ['A','B']] -> [['key'=>'category','value'=>'A'], ['key'=>'category','value'=>'B']]
+    // - ['type' => 'X']             -> [['key'=>'type','value'=>'X']]
+    // - ['is_strategic_location'=>'Lokasi Strategis'] -> [['key'=>'is_strategic_location','value'=>'Lokasi Strategis']]
+    $chipItems = collect($chips)
+        ->flatMap(function ($item) {
+            if (!is_array($item)) {
+                return [];
+            }
+
+            if (array_key_exists('categories', $item) && is_array($item['categories'])) {
+                return collect($item['categories'])->filter()->map(fn($c) => ['key' => 'category', 'value' => $c]);
+            }
+
+            $key = array_key_first($item);
+            $val = $item[$key] ?? null;
+
+            return $val ? [['key' => $key, 'value' => $val]] : [];
+        })
+        // (opsional) hilangkan duplikat kategori persis sama
+        ->unique(function ($i) {
+            return $i['key'] === 'category' ? 'category-' . $i['value'] : $i['key'] . '-' . $i['value'];
+        })
+        ->values();
+
     $detailUrl = $event ? route('events.show', $event) : '#';
 @endphp
 
@@ -60,23 +85,29 @@
                 @endif
 
                 {{-- Chips/Tags --}}
-                @if (count(array_filter($chips)))
+                @if ($chipItems->isNotEmpty())
                     <div class="flex flex-wrap gap-2 mb-5">
-                        @foreach ($chips as $chip)
-                            @if ($chip)
-                                <span
-                                    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-sky-50 text-sky-700 border border-sky-200">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd"
-                                            d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                    {{ $chip }}
-                                </span>
-                            @endif
+                        @foreach ($chipItems as $chip)
+                            @php
+                                $key = $chip['key'];
+                                $label = $chip['value'];
+
+                                $classes = match ($key) {
+                                    'is_strategic_location' => 'bg-yellow-50 border-yellow-200 text-yellow-700',
+                                    'type' => 'bg-green-50 border-green-200 text-green-700',
+                                    'category' => 'bg-sky-50 border-sky-200 text-sky-700',
+                                    default => 'bg-slate-50 border-slate-200 text-slate-700',
+                                };
+                            @endphp
+
+                            <span
+                                class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border {{ $classes }}">
+                                {{ $label }}
+                            </span>
                         @endforeach
                     </div>
                 @endif
+
             </div>
 
             {{-- Action Button --}}
