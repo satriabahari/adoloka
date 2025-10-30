@@ -14,10 +14,15 @@
                 @enderror
             </div>
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Usaha</label>
-                <input type="text" wire:model.defer="business_type" placeholder="Makanan"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition">
-                @error('business_type')
+                <label class="block text-sm font-medium text-gray-700 mb-2">Kategori Usaha</label>
+                <select wire:model.defer="umkm_category_id"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition bg-white">
+                    <option value="" hidden>Pilih kategori</option>
+                    @foreach ($umkmCategories as $cat)
+                        <option value="{{ $cat['id'] }}">{{ $cat['name'] }}</option>
+                    @endforeach
+                </select>
+                @error('category_id')
                     <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
                 @enderror
             </div>
@@ -70,19 +75,20 @@
 
         <!-- Buttons -->
         <div class="flex gap-3 pt-4">
-            <button type="submit"
-                class="flex-1 bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3.5 rounded-lg transition duration-200 shadow-sm hover:shadow-md">
-                Selanjutnya
-            </button>
             <button type="button" wire:click="previousStep"
                 class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-3.5 rounded-lg transition duration-200 shadow-sm hover:shadow-md">
                 Kembali
+            </button>
+            <button type="submit"
+                class="flex-1 bg-primary hover:bg-primary-dark text-white font-semibold py-3.5 rounded-lg transition duration-200 shadow-sm hover:shadow-md">
+                Selanjutnya
             </button>
         </div>
 
         <!-- Login Link -->
         <p class="text-center text-sm text-gray-600 pt-2">
-            Already have an account? <a href="/login" class="text-teal-600 hover:text-teal-700 font-medium">Login</a>
+            Already have an account? <a href="/login"
+                class="text-primary hover:text-primary-dark font-medium">Login</a>
         </p>
     </form>
 </div>

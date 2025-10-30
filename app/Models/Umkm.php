@@ -14,7 +14,7 @@ class Umkm extends Model implements HasMedia
     protected $fillable = [
         'user_id',
         'name',
-        'type',
+        'category_id',
         'city',
         'latitude',
         'longitude',
@@ -55,5 +55,10 @@ class Umkm extends Model implements HasMedia
     public function services()
     {
         return $this->hasMany(Service::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(EventUmkmCategory::class);
     }
 }
