@@ -17,7 +17,6 @@ class UserSeeder extends Seeder
         // Admin
         User::firstOrCreate([
             'first_name' => 'Admin',
-            'last_name' => '1',
             'about' => 'Saya merupakan seorang Admin pertama',
             'phone_number' => '081234567890',
             'email' => 'admin@gmail.com',

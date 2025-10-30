@@ -15,7 +15,7 @@
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                <input type="text" wire:model.defer="last_name" placeholder="Bahari"
+                <input type="text" wire:model.defer="last_name" placeholder="Bahari (Optional)"
                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition">
                 @error('last_name')
                     <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
@@ -81,10 +81,10 @@
         <div class="flex items-start pt-2">
             <input type="checkbox" wire:model.defer="agree_terms" id="agree_terms"
                 class="mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary cursor-pointer">
-            <label for="agree_terms" class="ml-3 text-sm text-gray-600 cursor-pointer select-none">
-                I agree to all the <a href="#" class="text-primary hover:text-primary-dark font-medium">Terms</a>
+            <label for="agree_terms" class="ml-3 text-sm text-gray-600 select-none">
+                I agree to all the <span class="text-primary hover:text-primary-dark font-medium">Terms</span>
                 and
-                <a href="#" class="text-primary hover:text-primary-dark font-medium">Privacy Policies</a>
+                <span class="text-primary hover:text-primary-dark font-medium">Privacy Policies</span>
             </label>
         </div>
         @error('agree_terms')
