@@ -29,6 +29,7 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar, 
         'last_name',
         'about',
         'phone_number',
+        'google_id',
         'email',
         'password',
         'role_id'
@@ -47,7 +48,7 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar, 
 
     public function role()
     {
-        return $this->hasOne(Role::class);
+        return $this->belongsTo(Role::class);
     }
 
     /**

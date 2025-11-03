@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name')->nullable();
             $table->text('about')->nullable();
-            $table->string('phone_number')->unique();
+            $table->string('phone_number')->nullable()->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('google_id')->nullable();
+            $table->string('google_id')->nullable()->unique();
             $table->foreignId('role_id')
                 ->constrained('roles')
                 ->onDelete('cascade');

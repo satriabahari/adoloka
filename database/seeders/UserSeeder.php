@@ -38,5 +38,15 @@ class UserSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+        User::firstOrCreate([
+            'id' => 3,
+            'first_name' => 'adoloka',
+            'email' => 'adoloka.id@gmail.com',
+            'google_id' => '115655485714016429101',
+            'password' => Hash::make('adoloka123'),
+            'role_id' => 2,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }
