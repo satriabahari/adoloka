@@ -12,49 +12,65 @@
     @endif
 
     <div
-        class="rounded-2xl bg-white/95 backdrop-blur ring-1 ring-gray-200 shadow-[0_16px_40px_rgba(17,65,119,0.15)] p-3 md:p-4">
-        <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold text-gray-900">Produk</h3>
-        </div>
-
-        <!-- Product List dengan Scroll -->
-        <div class="max-h-[500px] overflow-y-auto space-y-3 mb-4">
-            @forelse($products as $product)
-                <div class="rounded-xl bg-white ring-1 ring-gray-200 shadow-sm p-4 flex items-center gap-4">
-                    <img src="{{ $product->image_url }}" alt="{{ $product->name }}"
-                        class="w-24 h-24 object-cover rounded-lg">
-
-                    <div class="flex-1">
-                        <h4 class="font-semibold text-gray-900">{{ $product->name }}</h4>
-                        <p class="text-sm text-gray-600 line-clamp-2">{{ $product->description }}</p>
-                        <p class="text-sm text-sky-600 font-medium mt-1">Rp
-                            {{ number_format($product->price, 0, ',', '.') }}</p>
+        class="rounded-2xl bg-white/95 backdrop-blur ring-1 ring-gray-200 shadow-[0_16px_40px_rgba(17,65,119,0.15)] overflow-hidden">
+        <div class="bg-gradient-to-r from-sky-500 to-sky-600 px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                        </svg>
                     </div>
-
-                    <button wire:click="openModal({{ $product->id }})"
-                        class="px-4 py-1.5 text-xs rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700">
-                        Edit
-                    </button>
+                    <div>
+                        <h2 class="text-xl font-bold text-white">Produk</h2>
+                        <p class="text-sm text-sky-200">Transaksi pembelian Anda</p>
+                    </div>
                 </div>
-            @empty
-                <div class="text-center py-8 text-gray-500">
-                    <p>Belum ada produk. Tambahkan produk pertama Anda!</p>
-                </div>
-            @endforelse
+            </div>
         </div>
 
-        <!-- Tombol Tambah Product -->
-        <button wire:click="openModal"
-            class="w-full py-3 rounded-lg bg-sky-600 hover:bg-sky-700 text-white font-medium transition">
-            + Tambah Produk
-        </button>
+        <div class="p-4">
+            <!-- Product List dengan Scroll -->
+            <div class="max-h-[500px] overflow-y-auto space-y-3 mb-4">
+                @forelse($products as $product)
+                    <div
+                        class="rounded-xl bg-gradient-to-br from-white to-slate-50 border border-slate-200 shadow-sm p-4 flex items-center gap-4">
+                        <img src="{{ $product->image_url }}" alt="{{ $product->name }}"
+                            class="w-24 h-24 object-cover rounded-lg">
+
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-gray-900">{{ $product->name }}</h4>
+                            <p class="text-sm text-gray-600 line-clamp-2">{{ $product->description }}</p>
+                            <p class="text-sm text-sky-600 font-medium mt-1">Rp
+                                {{ number_format($product->price, 0, ',', '.') }}</p>
+                        </div>
+
+                        <button wire:click="openModal({{ $product->id }})"
+                            class="px-4 py-1.5 text-xs rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700">
+                            Edit
+                        </button>
+                    </div>
+                @empty
+                    <div class="text-center py-8 text-gray-500">
+                        <p>Belum ada produk. Tambahkan produk pertama Anda!</p>
+                    </div>
+                @endforelse
+            </div>
+
+            <!-- Tombol Tambah Product -->
+            <button wire:click="openModal"
+                class="w-full py-3 rounded-lg bg-sky-600 hover:bg-sky-700 text-white font-medium transition">
+                + Tambah Produk
+            </button>
+        </div>
     </div>
 
     <!-- Modal Form -->
     @if ($showModal)
-        <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4"
+        <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4 pt-12"
             wire:click="closeModal">
-            <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto" wire:click.stop>
+            <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[80vh] overflow-y-auto" wire:click.stop>
                 <div class="p-6">
                     <div class="flex items-center justify-between mb-6">
                         <h3 class="text-xl font-semibold text-gray-900">

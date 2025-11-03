@@ -29,7 +29,7 @@ class UpdateProductInformation extends Component
         'description' => 'nullable|string',
         'price' => 'required|numeric|min:0',
         'stock' => 'required|integer|min:0',
-        'category_id' => 'required|exists:categories,id',
+        'category_id' => 'required|exists:product_categories,id',
         'product_image' => 'nullable|image|max:2048',
     ];
 
