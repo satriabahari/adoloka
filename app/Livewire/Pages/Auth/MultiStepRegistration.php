@@ -10,6 +10,7 @@ use App\Models\EventAndUmkmCategory;
 use App\Models\ProductCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
@@ -74,43 +75,153 @@ class MultiStepRegistration extends Component
 
     public function mount()
     {
-        // Check if there's a step parameter in the URL
-        $requestedStep = request()->query('step');
-
-        // Check if user came from Google OAuth
-        if (session('google_signup_step')) {
-            $this->currentStep = session('google_signup_step');
-            $this->fromGoogle = true;
-
-            // Load authenticated user data
-            if (Auth::check()) {
-                $user = Auth::user();
-                $this->first_name = $user->first_name;
-                $this->last_name = $user->last_name;
-                $this->email = $user->email;
-                $this->phone_number = $user->phone_number;
-            }
-
-            session()->forget('google_signup_step');
-        } elseif ($requestedStep && in_array($requestedStep, [1, 2, 3])) {
-            // If step is provided in URL, use it
-            $this->currentStep = (int) $requestedStep;
-        } else {
-            // Default to step 1
-            $this->currentStep = 1;
-        }
-
-        // daftar kategori produk
+        // Load categories dulu (diperlukan di semua step)
         $this->productCategories = ProductCategory::select('id', 'name')
             ->orderBy('name')
             ->get()
             ->toArray();
 
-        // daftar kategori UMKM (diambil dari EventAndUmkmCategory)
         $this->umkmCategories = EventAndUmkmCategory::select('id', 'name')
             ->orderBy('name')
             ->get()
             ->toArray();
+
+        // Check if there's a step parameter in the URL
+        $requestedStep = request()->query('step');
+        $requestedStep = $requestedStep ? (int) $requestedStep : null;
+
+        // Check if user is authenticated (from Google OAuth or already logged in)
+        if (Auth::check()) {
+            $user = Auth::user();
+
+            // Load user data
+            $this->first_name = $user->first_name ?? '';
+            $this->last_name = $user->last_name ?? '';
+            $this->email = $user->email ?? '';
+            $this->phone_number = $user->phone_number ?? '';
+
+            // Set flag if user has google_id (came from Google)
+            if ($user->google_id) {
+                $this->fromGoogle = true;
+
+                // User dari Google langsung mark step 1 completed
+                session(['registration_step_1_completed' => true]);
+            }
+
+            // Set step based on URL parameter OR user status
+            if ($requestedStep && in_array($requestedStep, [1, 2, 3], true)) {
+                // Validasi: user hanya bisa akses step yang sudah unlocked
+                $allowedStep = $this->getMaxAllowedStep();
+
+                if ($requestedStep <= $allowedStep) {
+                    $this->currentStep = $requestedStep;
+                } else {
+                    // Redirect ke step terakhir yang valid
+                    $this->currentStep = $allowedStep;
+                    return redirect()->to('/register?step=' . $allowedStep);
+                }
+            } elseif (!$user->umkm) {
+                // If no step specified but user doesn't have UMKM, go to step 2
+                $this->currentStep = 2;
+            } else {
+                // User already has UMKM, shouldn't be here
+                return redirect()->route('home');
+            }
+        } else {
+            // Not authenticated
+            if ($requestedStep && in_array($requestedStep, [1, 2, 3], true)) {
+                // Validasi: hanya bisa akses step yang sudah completed
+                $allowedStep = $this->getMaxAllowedStep();
+
+                if ($requestedStep <= $allowedStep) {
+                    $this->currentStep = $requestedStep;
+                } else {
+                    // Redirect ke step terakhir yang valid
+                    $this->currentStep = $allowedStep;
+                    return redirect()->to('/register?step=' . $allowedStep);
+                }
+            } else {
+                // Default: new registration, start at step 1
+                $this->currentStep = 1;
+            }
+        }
+
+        // Load data dari session jika ada (untuk maintain data saat refresh)
+        $this->loadFromSession();
+    }
+
+    /**
+     * Get maximum allowed step based on completed steps
+     */
+    private function getMaxAllowedStep(): int
+    {
+        // Jika user authenticated via Google, langsung unlock step 2
+        if (Auth::check() && Auth::user()->google_id) {
+            return session('registration_step_2_completed') ? 3 : 2;
+        }
+
+        // Check session untuk step yang sudah completed
+        if (session('registration_step_2_completed')) {
+            return 3; // Bisa akses step 3
+        }
+
+        if (session('registration_step_1_completed')) {
+            return 2; // Bisa akses step 2
+        }
+
+        return 1; // Hanya bisa akses step 1
+    }
+
+    /**
+     * Save current step data to session
+     */
+    private function saveToSession()
+    {
+        if ($this->currentStep == 1) {
+            session([
+                'registration_step_1_data' => [
+                    'first_name' => $this->first_name,
+                    'last_name' => $this->last_name,
+                    'email' => $this->email,
+                    'phone_number' => $this->phone_number,
+                ]
+            ]);
+        } elseif ($this->currentStep == 2) {
+            session([
+                'registration_step_2_data' => [
+                    'business_name' => $this->business_name,
+                    'umkm_category_id' => $this->umkm_category_id,
+                    'city' => $this->city,
+                    'latitude' => $this->latitude,
+                    'longitude' => $this->longitude,
+                    'business_description' => $this->business_description,
+                ]
+            ]);
+        }
+    }
+
+    /**
+     * Load data from session
+     */
+    private function loadFromSession()
+    {
+        // Load step 1 data
+        if ($step1Data = session('registration_step_1_data')) {
+            $this->first_name = $step1Data['first_name'] ?? $this->first_name;
+            $this->last_name = $step1Data['last_name'] ?? $this->last_name;
+            $this->email = $step1Data['email'] ?? $this->email;
+            $this->phone_number = $step1Data['phone_number'] ?? $this->phone_number;
+        }
+
+        // Load step 2 data
+        if ($step2Data = session('registration_step_2_data')) {
+            $this->business_name = $step2Data['business_name'] ?? $this->business_name;
+            $this->umkm_category_id = $step2Data['umkm_category_id'] ?? $this->umkm_category_id;
+            $this->city = $step2Data['city'] ?? $this->city;
+            $this->latitude = $step2Data['latitude'] ?? $this->latitude;
+            $this->longitude = $step2Data['longitude'] ?? $this->longitude;
+            $this->business_description = $step2Data['business_description'] ?? $this->business_description;
+        }
     }
 
     // Step 1 validation rules
@@ -119,7 +230,6 @@ class MultiStepRegistration extends Component
         $rules = [
             'first_name' => 'required|string|max:255',
             'last_name' => 'nullable|string|max:255',
-            'email' => 'required|email|unique:users,email',
             'phone_number' => [
                 'required',
                 'string',
@@ -129,8 +239,16 @@ class MultiStepRegistration extends Component
             'agree_terms' => 'accepted',
         ];
 
-        // Only require password if not from Google
-        if (!$this->fromGoogle) {
+        // Jika user dari Google (sudah punya email)
+        if ($this->fromGoogle && Auth::check()) {
+            $userId = Auth::id();
+            $rules['email'] = [
+                'required',
+                'email',
+                'unique:users,email,' . $userId
+            ];
+        } else {
+            $rules['email'] = 'required|email|unique:users,email';
             $rules['password'] = 'required|string|min:8|confirmed';
         }
 
@@ -163,16 +281,34 @@ class MultiStepRegistration extends Component
     {
         if ($this->currentStep == 1) {
             $this->validate($this->step1Rules());
+
+            // Mark step 1 as completed
+            session(['registration_step_1_completed' => true]);
+
+            // Save data to session
+            $this->saveToSession();
         } elseif ($this->currentStep == 2) {
             $this->validate($this->step2Rules());
+
+            // Mark step 2 as completed
+            session(['registration_step_2_completed' => true]);
+
+            // Save data to session
+            $this->saveToSession();
         }
 
         $this->currentStep++;
+
+        // Update URL
+        $this->dispatch('updateUrl', step: $this->currentStep);
     }
 
     public function previousStep()
     {
         $this->currentStep--;
+
+        // Update URL
+        $this->dispatch('updateUrl', step: $this->currentStep);
     }
 
     public function setLocation($lat, $lng)
@@ -242,6 +378,14 @@ class MultiStepRegistration extends Component
                 ->toMediaCollection('product_photos');
         }
 
+        // Clear registration session data
+        session()->forget([
+            'registration_step_1_completed',
+            'registration_step_2_completed',
+            'registration_step_1_data',
+            'registration_step_2_data',
+        ]);
+
         // Redirect to dashboard with success message
         session()->flash('success', 'Registrasi berhasil! Selamat datang di platform UMKM.');
 
@@ -251,7 +395,6 @@ class MultiStepRegistration extends Component
     #[Layout('layouts.guest')]
     public function render()
     {
-        // return view('livewire.pages.auth.user-registration');
         return view('livewire.pages.auth.multi-step-registration');
     }
 }

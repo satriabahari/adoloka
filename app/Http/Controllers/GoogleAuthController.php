@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -56,19 +57,24 @@ class GoogleAuthController extends Controller
                 ]);
             }
 
-            // Log in the user
-            Auth::login($user);
+            // **PENTING: Login user dulu**
+            Auth::login($user, true); // Parameter `true` = remember me
+
+            // **PENTING: Regenerate session untuk keamanan**
+            request()->session()->regenerate();
 
             // If user doesn't have UMKM, redirect to step 2 of registration
             if (!$user->umkm) {
-                session(['google_signup_step' => 2]);
-                return redirect()->route('register')->with('message', 'Please complete your business information');
+                return redirect()->to('/register?step=2')
+                    ->with('message', 'Please complete your business information');
             }
 
             // Otherwise redirect to dashboard
             return redirect()->route('home');
         } catch (\Exception $e) {
-            return redirect()->route('register')->with('error', 'Unable to login with Google. Please try again.');
+            Log::error('Google OAuth Error: ' . $e->getMessage());
+            return redirect()->route('register')
+                ->with('error', 'Unable to login with Google. Please try again.');
         }
     }
 }

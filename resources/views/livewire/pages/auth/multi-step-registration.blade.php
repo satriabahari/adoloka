@@ -293,7 +293,6 @@
     </div>
 </div>
 
-
 @livewireScripts
 
 <script>
@@ -305,5 +304,11 @@
             url.searchParams.set('step', step);
             window.history.pushState({}, '', url);
         });
+    });
+
+    // Prevent back button skip
+    window.addEventListener('popstate', function(event) {
+        // Reload page to re-validate step access
+        window.location.reload();
     });
 </script>

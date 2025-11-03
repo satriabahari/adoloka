@@ -112,7 +112,7 @@ new #[Layout('layouts.guest')] class extends Component {
                     </div>
 
                     <!-- Google Sign Up -->
-                    <a href="{{ route('auth.google') }}"
+                    <a href="{{ route('auth.google.redirect') }}"
                         class="w-full flex items-center justify-center gap-3 px-4 py-3.5 border border-gray-300 rounded-lg hover:bg-gray-50 transition duration-200 shadow-sm hover:shadow-md">
                         <svg class="w-5 h-5" viewBox="0 0 24 24">
                             <path fill="#4285F4"

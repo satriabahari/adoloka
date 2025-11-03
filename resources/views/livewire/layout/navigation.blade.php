@@ -23,7 +23,7 @@ new class extends Component {
             } catch (\Throwable $e) {
                 $avatarUrl = null;
             }
-            $avatarUrl = $avatarUrl ?: asset('images/placeholder.png');
+            $avatarUrl = $avatarUrl ?: asset('images/avatar-profile.png');
         }
     @endphp
 
@@ -38,7 +38,7 @@ new class extends Component {
 
             <!-- Middle Nav -->
             <div class="flex gap-4 justify-center items-center">
-                <x-nav-link :href="route('events')" :active="request()->routeIs('events')" wire:navigate>
+                <x-nav-link :href="route('events.index')" :active="request()->routeIs('events.index')" wire:navigate>
                     {{ __('Events') }}
                 </x-nav-link>
 
@@ -112,7 +112,7 @@ new class extends Component {
     <!-- Responsive Navigation Menu (Mobile) -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('events')" :active="request()->routeIs('events')" wire:navigate>
+            <x-responsive-nav-link :href="route('events.index')" :active="request()->routeIs('events.index')" wire:navigate>
                 {{ __('Events') }}
             </x-responsive-nav-link>
 
