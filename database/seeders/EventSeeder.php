@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Event;
 use App\Models\EventAndUmkmCategory;
-use App\Models\EventCategory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -16,31 +15,34 @@ class EventSeeder extends Seeder
             [
                 'title' => 'Pasar Buah Jambi',
                 'description' => 'Jadikan usahamu terkenal pada event tersebut.',
-                'location' => 'Kota Jambi',
+                'latitude' => -1.6101,
+                'longitude' => 103.6131,
                 'start_date' => '2026-08-10',
                 'end_date'   => '2026-08-12',
                 'type' => 'tahunan',
-                'categories' => ['UMKM Perkebunan', 'UMKM Kuliner'], // multiple
+                'categories' => ['UMKM Perkebunan', 'UMKM Kuliner'],
                 'is_strategic_location' => true,
                 'image' => 'concert.jpg',
             ],
             [
                 'title' => 'Car Free Night',
                 'description' => 'Ramaikan malam bebas kendaraan sambil berjualan.',
-                'location' => 'Lapangan Kantor Gubernur',
+                'latitude' => -1.6075,
+                'longitude' => 103.6139,
                 'start_date' => '2026-09-23',
-                'end_date'   => '2026-09-23', // fixed (53 -> 23)
+                'end_date'   => '2026-09-23',
                 'type' => 'mingguan',
-                'categories' => ['UMKM Kuliner', 'UMKM Perkebunan'], // multiple
+                'categories' => ['UMKM Kuliner', 'UMKM Perkebunan'],
                 'is_strategic_location' => true,
                 'image' => 'party.jpg',
             ],
             [
                 'title' => 'Car Free Day',
                 'description' => 'Kesempatan branding usahamu di CFD.',
-                'location' => 'Jl. Jend. Sudirman',
+                'latitude' => -1.6022,
+                'longitude' => 103.6170,
                 'start_date' => '2026-09-28',
-                'end_date'   => '2026-09-29', // fixed (31 -> 30)
+                'end_date'   => '2026-09-29',
                 'type' => 'mingguan',
                 'categories' => ['UMKM Kuliner', 'UMKM Perkebunan'],
                 'is_strategic_location' => true,
@@ -49,7 +51,8 @@ class EventSeeder extends Seeder
             [
                 'title' => 'Jambi Business Center',
                 'description' => 'Jadikan usahamu terkenal pada Jambi Business Center.',
-                'location' => 'Kota Jambi',
+                'latitude' => -1.6135,
+                'longitude' => 103.6128,
                 'start_date' => '2025-08-10',
                 'end_date'   => '2025-08-21',
                 'type' => 'tahunan',

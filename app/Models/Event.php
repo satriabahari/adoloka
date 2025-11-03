@@ -15,7 +15,8 @@ class Event extends Model implements HasMedia
         'title',
         'slug',
         'description',
-        'location',
+        'latitude',
+        'longitude',
         'start_date',
         'end_date',
         'type',
@@ -25,6 +26,8 @@ class Event extends Model implements HasMedia
     protected $casts = [
         'start_date' => 'date',
         'end_date'   => 'date',
+        'latitude' => 'decimal:8',
+        'longitude' => 'decimal:8',
         'is_strategic_location' => 'boolean',
     ];
 

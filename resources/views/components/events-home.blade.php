@@ -7,7 +7,7 @@
             <h2 class="text-2xl md:text-3xl font-bold text-gray-900">
                 Pilih Event yang sesuai dengan usahamu
             </h2>
-            <a href="{{ route('events') }}"
+            <a href="{{ route('events.index') }}"
                 class="border-2 border-sky-500 text-sky-600 hover:bg-sky-500 hover:text-white px-6 py-2.5 rounded-full transition-all duration-300 font-medium hover:shadow-lg">
                 Lihat Semua Event
             </a>
