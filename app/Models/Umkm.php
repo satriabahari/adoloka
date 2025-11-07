@@ -59,6 +59,6 @@ class Umkm extends Model implements HasMedia
 
     public function category()
     {
-        return $this->belongsTo(EventAndUmkmCategory::class);
+        return $this->belongsTo(EventAndUmkmCategory::class, 'category_id');
     }
 }

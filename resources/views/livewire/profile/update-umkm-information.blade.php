@@ -14,7 +14,7 @@
     <!-- KARTU: Info UMKM -->
     <div
         class="rounded-2xl bg-white/95 backdrop-blur ring-1 ring-gray-200 shadow-[0_16px_40px_rgba(17,65,119,0.15)] overflow-hidden">
-        <div class="bg-gradient-to-r from-sky-500 to-sky-600 px-6 py-4">
+        <div class="bg-gradient-to-r from-primary-500 to-primary-600 px-6 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
@@ -25,7 +25,7 @@
                     </div>
                     <div>
                         <h2 class="text-xl font-bold text-white">UMKM</h2>
-                        <p class="text-sm text-sky-200">Transaksi pembelian Anda</p>
+                        <p class="text-sm text-primary-200">Transaksi pembelian Anda</p>
                     </div>
                 </div>
             </div>
@@ -47,9 +47,9 @@
                                 </button>
                             @else
                                 <input type="text" wire:model.live="nama_umkm"
-                                    class="flex-1 rounded-lg border-gray-300 focus:ring-sky-500 focus:border-sky-500">
+                                    class="flex-1 rounded-lg border-gray-300 focus:ring-primary-500 focus:border-primary-500">
                                 <button wire:click="save('nama_umkm')"
-                                    class="px-4 py-1.5 text-xs rounded-full bg-sky-600 hover:bg-sky-700 text-white">
+                                    class="px-4 py-1.5 text-xs rounded-full bg-primary-600 hover:bg-primary-700 text-white">
                                     Save
                                 </button>
                             @endif
@@ -71,14 +71,14 @@
                                 </button>
                             @else
                                 <select wire:model.live="category_id"
-                                    class="flex-1 rounded-lg border-gray-300 focus:ring-sky-500 focus:border-sky-500">
+                                    class="flex-1 rounded-lg border-gray-300 focus:ring-primary-500 focus:border-primary-500">
                                     <option value="" disabled>Pilih Kategori</option>
                                     @foreach ($categoryOptions as $id => $name)
                                         <option value="{{ $id }}">{{ $name }}</option>
                                     @endforeach
                                 </select>
                                 <button wire:click="save('kategori')"
-                                    class="px-4 py-1.5 text-xs rounded-full bg-sky-600 hover:bg-sky-700 text-white">
+                                    class="px-4 py-1.5 text-xs rounded-full bg-primary-600 hover:bg-primary-700 text-white">
                                     Save
                                 </button>
                             @endif
@@ -97,7 +97,7 @@
                                 <span class="flex-1 text-gray-800 font-medium">{{ $asal_produk }}</span>
                             @else
                                 <input type="text" wire:model.live="asal_produk"
-                                    class="flex-1 rounded-lg border-gray-300 focus:ring-sky-500 focus:border-sky-500">
+                                    class="flex-1 rounded-lg border-gray-300 focus:ring-primary-500 focus:border-primary-500">
                             @endif
 
                             @if (!$editing['asal_produk'])
@@ -107,7 +107,7 @@
                                 </button>
                             @else
                                 <button wire:click="save('asal_produk')"
-                                    class="px-4 py-1.5 text-xs rounded-full bg-sky-600 hover:bg-sky-700 text-white">
+                                    class="px-4 py-1.5 text-xs rounded-full bg-primary-600 hover:bg-primary-700 text-white">
                                     Save
                                 </button>
                             @endif
@@ -130,7 +130,7 @@
                         </button>
                     @else
                         <button wire:click="save('deskripsi')"
-                            class="px-4 py-1.5 text-xs rounded-full bg-sky-600 hover:bg-sky-700 text-white">
+                            class="px-4 py-1.5 text-xs rounded-full bg-primary-600 hover:bg-primary-700 text-white">
                             Save
                         </button>
                     @endif
@@ -142,7 +142,7 @@
                     </p>
                 @else
                     <textarea rows="4" wire:model.live="deskripsi"
-                        class="w-full rounded-lg border-gray-300 focus:ring-sky-500 focus:border-sky-500"></textarea>
+                        class="w-full rounded-lg border-gray-300 focus:ring-primary-500 focus:border-primary-500"></textarea>
                 @endif
             </div>
 
@@ -164,7 +164,7 @@
                                 </label>
                                 @if ($halal_certificate)
                                     <button wire:click="uploadCertificate('halal')"
-                                        class="ml-2 text-xs px-3 py-1.5 rounded-full bg-sky-600 hover:bg-sky-700 text-white">
+                                        class="ml-2 text-xs px-3 py-1.5 rounded-full bg-primary-600 hover:bg-primary-700 text-white">
                                         Simpan
                                     </button>
                                 @endif
@@ -200,7 +200,7 @@
                                 </label>
                                 @if ($bpom_certificate)
                                     <button wire:click="uploadCertificate('bpom')"
-                                        class="ml-2 text-xs px-3 py-1.5 rounded-full bg-sky-600 hover:bg-sky-700 text-white">
+                                        class="ml-2 text-xs px-3 py-1.5 rounded-full bg-primary-600 hover:bg-primary-700 text-white">
                                         Simpan
                                     </button>
                                 @endif
@@ -236,7 +236,7 @@
                                 </label>
                                 @if ($nib_certificate)
                                     <button wire:click="uploadCertificate('nib')"
-                                        class="ml-2 text-xs px-3 py-1.5 rounded-full bg-sky-600 hover:bg-sky-700 text-white">
+                                        class="ml-2 text-xs px-3 py-1.5 rounded-full bg-primary-600 hover:bg-primary-700 text-white">
                                         Simpan
                                     </button>
                                 @endif
@@ -271,7 +271,7 @@
             wire:click="closeModal">
             <div class="relative max-w-3xl p-4" wire:click.stop>
                 <button wire:click="closeModal"
-                    class="absolute top-6 right-6 px-2 text-white hover:text-gray-300 text-2xl bg-primary hover:bg-primary-hover rounded-full duration-200 transition">
+                    class="absolute top-6 right-6 px-2 text-white hover:text-gray-300 text-2xl bg-primary-500 hover:bg-primary-700 rounded-full duration-200 transition">
                     ×
                 </button>
                 <img src="{{ $viewImage }}" alt="Certificate" class="max-w-full max-h-[70vh] rounded-lg">
