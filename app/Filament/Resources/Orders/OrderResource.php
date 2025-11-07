@@ -19,9 +19,9 @@ class OrderResource extends Resource
 {
     protected static ?string $model = Order::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::CreditCard;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::CurrencyDollar;
 
-    protected static string | UnitEnum | null $navigationGroup = "Payment";
+    protected static string|UnitEnum|null $navigationGroup = "UMKM";
 
     public static function getNavigationBadge(): ?string
     {

@@ -14,14 +14,20 @@ class RolesTable
     {
         return $table
             ->columns([
+                TextColumn::make('No.')
+                    ->rowIndex()
+                    ->alignCenter(),
                 TextColumn::make('name')
+                    ->placeholder('-')
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
+                    ->placeholder('-')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
                     ->dateTime()
+                    ->placeholder('-')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])

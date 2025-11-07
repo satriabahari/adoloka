@@ -1,6 +1,6 @@
 <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
     <!-- Header -->
-    <div class="bg-gradient-to-r from-sky-500 to-sky-600 px-6 py-4">
+    <div class="bg-gradient-to-r from-primary-500 to-primary-600 px-6 py-4">
         <div class="flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
@@ -11,7 +11,7 @@
                 </div>
                 <div>
                     <h2 class="text-xl font-bold text-white">Riwayat Pembayaran</h2>
-                    <p class="text-sm text-sky-200">Transaksi pembelian Anda</p>
+                    <p class="text-sm text-primary-200">Transaksi pembelian Anda</p>
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
             <div>
                 <label class="block text-xs font-medium text-slate-700 mb-1">Status</label>
                 <select wire:model.live="statusFilter"
-                    class="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent">
+                    class="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
                     <option value="all">Semua Status</option>
                     <option value="waiting_payment">Menunggu Pembayaran</option>
                     <option value="paid">Dibayar</option>
@@ -37,7 +37,7 @@
             <div>
                 <label class="block text-xs font-medium text-slate-700 mb-1">Tipe</label>
                 <select wire:model.live="typeFilter"
-                    class="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent">
+                    class="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
                     <option value="all">Semua Tipe</option>
                     <option value="product">Produk</option>
                     <option value="service">Layanan</option>
@@ -86,7 +86,7 @@
                                     <div class="text-sm">
                                         <span class="text-slate-600">{{ $order->quantity }}x</span>
                                         <span
-                                            class="font-bold text-sky-600 ml-2">{{ $order->formatted_gross_amount }}</span>
+                                            class="font-bold text-primary-600 ml-2">{{ $order->formatted_gross_amount }}</span>
                                     </div>
 
                                     <!-- Status Badge -->
@@ -105,7 +105,7 @@
                         <!-- Action Button -->
                         <div class="mt-3 pt-3 border-t border-slate-200">
                             <a href="{{ route('payment.status', $order->order_number) }}"
-                                class="inline-flex items-center gap-2 px-4 py-2 bg-sky-50 hover:bg-sky-100 text-sky-700 rounded-lg text-sm font-medium transition-colors">
+                                class="inline-flex items-center gap-2 px-4 py-2 bg-primary-50 hover:bg-primary-100 text-primary-700 rounded-lg text-sm font-medium transition-colors">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -136,11 +136,11 @@
                 <p class="text-slate-600 mb-6">Anda belum melakukan pembelian</p>
                 <div class="flex items-center justify-center gap-3">
                     <a href="{{ route('products.index') }}"
-                        class="px-6 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded-lg font-medium transition-colors">
+                        class="px-6 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors">
                         Belanja Produk
                     </a>
                     <a href="{{ route('services.index') }}"
-                        class="px-6 py-2 bg-white hover:bg-slate-50 text-sky-600 border-2 border-sky-600 rounded-lg font-medium transition-colors">
+                        class="px-6 py-2 bg-white hover:bg-slate-50 text-primary-600 border-2 border-primary-600 rounded-lg font-medium transition-colors">
                         Lihat Layanan
                     </a>
                 </div>

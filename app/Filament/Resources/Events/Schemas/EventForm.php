@@ -22,8 +22,12 @@ class EventForm
                 Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
-                TextInput::make('location')
-                    ->required(),
+                TextInput::make('latitude')
+                    ->numeric(),
+                TextInput::make('longitude')
+                    ->numeric(),
+                Textarea::make('address')
+                    ->columnSpanFull(),
                 DatePicker::make('start_date')
                     ->required(),
                 DatePicker::make('end_date')
@@ -31,9 +35,12 @@ class EventForm
                 Select::make('type')
                     ->options(['mingguan' => 'Mingguan', 'tahunan' => 'Tahunan'])
                     ->required(),
-                Select::make('category')
-                    ->options(['UMKM Kuliner' => 'U m k m kuliner', 'UMKM Perkebunan' => 'U m k m perkebunan'])
-                    ->required(),
+                Select::make('categories')
+                    ->label('Event Categories')
+                    ->relationship('categories', 'name')
+                    ->multiple()
+                    ->preload()                                
+                    ->searchable(),
                 Toggle::make('is_strategic_location')
                     ->required(),
             ]);

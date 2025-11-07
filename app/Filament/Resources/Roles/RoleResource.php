@@ -19,9 +19,9 @@ class RoleResource extends Resource
 {
     protected static ?string $model = Role::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::UserCircle;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::UserGroup;
 
-    protected static string | UnitEnum | null $navigationGroup = "User Access";
+    protected static string|UnitEnum|null $navigationGroup = "User Access";
 
     public static function getNavigationBadge(): ?string
     {

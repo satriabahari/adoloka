@@ -21,7 +21,7 @@ class ProductResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Cube;
 
-    protected static string | UnitEnum | null $navigationGroup = "UMKM";
+    protected static string|UnitEnum|null $navigationGroup = "UMKM";
 
     public static function getNavigationBadge(): ?string
     {

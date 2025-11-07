@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Events;
 use App\Filament\Resources\Events\Pages\CreateEvent;
 use App\Filament\Resources\Events\Pages\EditEvent;
 use App\Filament\Resources\Events\Pages\ListEvents;
+use App\Filament\Resources\Events\RelationManagers\CategoriesRelationManager;
 use App\Filament\Resources\Events\Schemas\EventForm;
 use App\Filament\Resources\Events\Tables\EventsTable;
 use App\Models\Event;
@@ -19,9 +20,9 @@ class EventResource extends Resource
 {
     protected static ?string $model = Event::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::CalendarDays;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::HomeModern;
 
-    protected static string | UnitEnum | null $navigationGroup = "UMKM";
+    protected static string|UnitEnum|null $navigationGroup = "UMKM";
 
     public static function getNavigationBadge(): ?string
     {
@@ -46,7 +47,7 @@ class EventResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            CategoriesRelationManager::class,
         ];
     }
 

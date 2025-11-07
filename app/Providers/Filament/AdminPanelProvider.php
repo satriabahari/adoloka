@@ -2,7 +2,8 @@
 
 namespace App\Providers\Filament;
 
-use Filament\Http\Middleware\Authenticate;
+use App\Http\Middleware\EnsureAdminForFilament;
+use App\Http\Middleware\EnsureUserIsAdmin;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -28,9 +29,10 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->brandName("AdoLoka")
-            ->login()
+            ->login(false)
+            // ->authGuard('web')
             ->colors([
-                'primary' => Color::Emerald,
+                'primary' => Color::Sky,
             ])
             ->font('Onest')
             ->sidebarCollapsibleOnDesktop()
@@ -38,9 +40,7 @@ class AdminPanelProvider extends PanelProvider
             ->darkMode(false)
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
-            ->pages([
-                Dashboard::class,
-            ])
+            ->pages([])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
                 AccountWidget::class,
@@ -57,8 +57,12 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            // ->authMiddleware([
+            //     Authenticate::class,
+            // ]);
+
             ->authMiddleware([
-                Authenticate::class,
+                EnsureUserIsAdmin::class,
             ]);
     }
 }
