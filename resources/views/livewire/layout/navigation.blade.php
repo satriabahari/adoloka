@@ -57,11 +57,11 @@ new class extends Component {
                     <!-- Guest: Masuk | Daftar -->
                     <div class="flex items-center gap-3">
                         <a href="{{ route('login') }}" wire:navigate
-                            class="px-4 py-2 text-gray-700 hover:text-sky-600 transition font-medium">
+                            class="px-4 py-2 text-gray-700 hover:text-primary-600 transition font-medium">
                             Masuk
                         </a>
                         <a href="{{ route('register') }}" wire:navigate
-                            class="rounded-tl-2xl rounded-br-2xl bg-gradient-to-r from-sky-500 to-sky-600 text-white px-8 py-2 hover:opacity-95 transition">
+                            class="rounded-tl-2xl rounded-br-2xl bg-gradient-to-r from-primary-500 to-primary-600 text-white px-8 py-2 hover:opacity-95 transition">
                             Daftar
                         </a>
                     </div>
@@ -73,7 +73,7 @@ new class extends Component {
                         <x-slot name="trigger">
                             <button class="inline-flex items-center gap-3 text-sm focus:outline-none">
                                 <img src="{{ $avatarUrl }}" alt="Avatar"
-                                    class="h-9 w-9 rounded-full object-cover ring-1 ring-primary">
+                                    class="h-9 w-9 rounded-full object-cover ring-1 ring-primary-500">
                             </button>
                         </x-slot>
 
@@ -134,11 +134,11 @@ new class extends Component {
         @guest
             <div class="border-t border-gray-200 px-4 py-3 flex items-center justify-between">
                 <a href="{{ route('login') }}" wire:navigate
-                    class="px-4 py-2 rounded-md text-primary ring-1 ring-primary/20 hover:bg-primary/5 transition">
+                    class="px-4 py-2 rounded-md text-primary-500 ring-1 ring-primary-500/20 hover:bg-primary/5 transition">
                     Masuk
                 </a>
                 <a href="{{ route('register') }}" wire:navigate
-                    class="rounded-tl-xl rounded-br-xl bg-gradient-to-r from-primary to-primary-dark text-white px-6 py-2 font-semibold">
+                    class="rounded-tl-xl rounded-br-xl bg-gradient-to-r from-primary-500 to-primary-600 text-white px-6 py-2 font-semibold">
                     Daftar
                 </a>
             </div>

@@ -19,6 +19,14 @@ new #[Layout('layouts.guest')] class extends Component {
 
         Session::regenerate();
 
+        $user = Auth::user();
+
+        if ($user && $user->isAdmin()) {
+            $this->redirect('/admin', navigate: true);
+            return;
+        }
+
+        // Default redirect untuk user biasa
         $this->redirectIntended(default: route('home', absolute: false), navigate: true);
     }
 }; ?>
@@ -32,8 +40,8 @@ new #[Layout('layouts.guest')] class extends Component {
     <div class="bg-white rounded-2xl flex md:flex-row flex-col shadow-2xl overflow-hidden">
         <!-- Illustration (optional) -->
         <div
-            class="lg:w-1/2 p-8 flex flex-col justify-center items-center text-center bg-gradient-to-br from-primary to-primary-dark">
-            <img src="{{ asset('images/login.svg') }}" alt="Ilustrasi" class="w-96">
+            class="lg:w-1/2 p-8 flex flex-col justify-center items-center text-center bg-gradient-to-br from-primary-500 to-primary-600">
+            <img src="{{ asset('images/auth/login.svg') }}" alt="Ilustrasi" class="w-96">
             <div class="flex flex-col justify-center text-white mt-8">
                 <h2 class="text-3xl font-bold mb-2">Selamat datang kembali!</h2>
                 <p class="text-white/90">Masuk untuk mengelola UMKM, event, dan produk Anda.</p>
@@ -46,7 +54,7 @@ new #[Layout('layouts.guest')] class extends Component {
                 <h1 class="text-2xl font-bold text-gray-900 mb-6">Masuk Akun</h1>
 
                 @if (session('status'))
-                    <div class="mb-4 p-3 rounded-md bg-emerald-50 text-primary text-sm">
+                    <div class="mb-4 p-3 rounded-md bg-emerald-50 text-primary-500 text-sm">
                         {{ session('status') }}
                     </div>
                 @endif
@@ -70,7 +78,7 @@ new #[Layout('layouts.guest')] class extends Component {
                             Email
                         </label>
                         <input id="email" type="email" required autocomplete="email" wire:model.defer="form.email"
-                            class="w-full rounded-lg border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary-dark"
+                            class="w-full rounded-lg border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-600"
                             placeholder="you@example.com">
                     </div>
 
@@ -79,24 +87,24 @@ new #[Layout('layouts.guest')] class extends Component {
                         <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
                         <input id="password" type="password" autocomplete="current-password"
                             wire:model.defer="form.password"
-                            class="w-full rounded-lg border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary-dark"
+                            class="w-full rounded-lg border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-600"
                             placeholder="Password">
                     </div>
 
                     <!-- Actions -->
                     <div class="flex items-center justify-between pt-2">
                         <a href="{{ route('password.request') }}"
-                            class="text-sm text-primary hover:text-primary-dark">Lupa password?</a>
+                            class="text-sm text-primary-500 hover:text-primary-600">Lupa password?</a>
                     </div>
 
                     <button type="submit"
-                        class="w-full mt-2 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary-hover shadow-md hover:shadow-lg transition">
+                        class="w-full mt-2 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 shadow-md hover:shadow-lg transition">
                         Masuk
                     </button>
 
                     <p class="text-sm text-gray-600 text-center">
                         Belum punya akun?
-                        <a href="{{ route('register') }}" class="text-primary hover:text-primary-dark font-medium">
+                        <a href="{{ route('register') }}" class="text-primary-500 hover:text-primary-600 font-medium">
                             Daftar sekarang
                         </a>
                     </p>

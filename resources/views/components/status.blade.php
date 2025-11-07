@@ -2,38 +2,40 @@
     <div class="max-w-3xl mx-auto pt-12 px-4 pb-12">
         <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
             <!-- Status Header -->
-            <div class="px-8 pt-8 pb-6 text-center
-                @if($order->status === 'paid') bg-gradient-to-br from-green-50 to-green-100
+            <div
+                class="px-8 pt-8 pb-6 text-center
+                @if ($order->status === 'paid') bg-gradient-to-br from-green-50 to-green-100
                 @elseif($order->status === 'waiting_payment') bg-gradient-to-br from-yellow-50 to-yellow-100
                 @elseif($order->status === 'expired') bg-gradient-to-br from-gray-50 to-gray-100
-                @else bg-gradient-to-br from-red-50 to-red-100
-                @endif">
+                @else bg-gradient-to-br from-red-50 to-red-100 @endif">
 
                 <!-- Status Icon -->
-                <div class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center
-                    @if($order->status === 'paid') bg-green-500
+                <div
+                    class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center
+                    @if ($order->status === 'paid') bg-green-500
                     @elseif($order->status === 'waiting_payment') bg-yellow-500
                     @elseif($order->status === 'expired') bg-gray-500
-                    @else bg-red-500
-                    @endif">
-                    @if($order->status === 'paid')
+                    @else bg-red-500 @endif">
+                    @if ($order->status === 'paid')
                         <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                         </svg>
                     @elseif($order->status === 'waiting_payment')
                         <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     @else
                         <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     @endif
                 </div>
 
                 <!-- Status Text -->
                 <h1 class="text-2xl font-bold text-slate-800 mb-2">
-                    @if($order->status === 'paid')
+                    @if ($order->status === 'paid')
                         Pembayaran Berhasil!
                     @elseif($order->status === 'waiting_payment')
                         Menunggu Pembayaran
@@ -45,7 +47,7 @@
                 </h1>
 
                 <p class="text-slate-600">
-                    @if($order->status === 'paid')
+                    @if ($order->status === 'paid')
                         Terima kasih! Pesanan Anda telah berhasil dibayar.
                     @elseif($order->status === 'waiting_payment')
                         Silakan selesaikan pembayaran Anda.
@@ -81,7 +83,7 @@
                             <span class="text-slate-600">Tipe</span>
                             <span class="font-medium text-slate-800">{{ $order->item_type }}</span>
                         </div>
-                        @if($order->notes)
+                        @if ($order->notes)
                             <div class="pt-2 border-t border-slate-200">
                                 <span class="text-sm text-slate-600">Catatan:</span>
                                 <p class="text-slate-700 mt-1">{{ $order->notes }}</p>
@@ -115,29 +117,30 @@
                     <div class="space-y-2">
                         <div class="flex justify-between text-lg">
                             <span class="text-slate-700">Total Pembayaran</span>
-                            <span class="font-bold text-sky-600">{{ $order->formatted_gross_amount }}</span>
+                            <span class="font-bold text-primary-600">{{ $order->formatted_gross_amount }}</span>
                         </div>
                         <div class="flex justify-between text-sm">
                             <span class="text-slate-600">Status</span>
-                            <span class="px-3 py-1 rounded-full text-xs font-semibold
-                                @if($order->status === 'paid') bg-green-100 text-green-700
+                            <span
+                                class="px-3 py-1 rounded-full text-xs font-semibold
+                                @if ($order->status === 'paid') bg-green-100 text-green-700
                                 @elseif($order->status === 'waiting_payment') bg-yellow-100 text-yellow-700
                                 @elseif($order->status === 'expired') bg-gray-100 text-gray-700
-                                @else bg-red-100 text-red-700
-                                @endif">
+                                @else bg-red-100 text-red-700 @endif">
                                 {{ $order->status_label }}
                             </span>
                         </div>
-                        @if($order->payment_type)
+                        @if ($order->payment_type)
                             <div class="flex justify-between text-sm">
                                 <span class="text-slate-600">Metode Pembayaran</span>
                                 <span class="font-medium text-slate-800">{{ strtoupper($order->payment_type) }}</span>
                             </div>
                         @endif
-                        @if($order->paid_at)
+                        @if ($order->paid_at)
                             <div class="flex justify-between text-sm">
                                 <span class="text-slate-600">Dibayar pada</span>
-                                <span class="font-medium text-slate-800">{{ $order->paid_at->format('d M Y, H:i') }}</span>
+                                <span
+                                    class="font-medium text-slate-800">{{ $order->paid_at->format('d M Y, H:i') }}</span>
                             </div>
                         @endif
                     </div>
@@ -145,16 +148,29 @@
 
                 <!-- Actions -->
                 <div class="flex flex-col sm:flex-row gap-3 pt-4">
+                    @if ($order->status === 'waiting_payment' && $order->snap_token)
+                        <button type="button" id="pay-button"
+                            class="flex-1 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-colors text-center shadow-lg shadow-green-500/50 hover:shadow-xl hover:shadow-green-500/50">
+                            <span class="flex items-center justify-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                </svg>
+                                Bayar Sekarang
+                            </span>
+                        </button>
+                    @endif
+
                     <a href="{{ url('/') }}"
-                        class="flex-1 px-6 py-3 bg-sky-600 hover:bg-sky-700 text-white rounded-lg font-semibold transition-colors text-center">
+                        class="flex-1 px-6 py-3 {{ $order->status === 'waiting_payment' ? 'bg-white hover:bg-slate-50 text-primary-600 border-2 border-primary-600' : 'bg-primary-600 hover:bg-primary-700 text-white' }} rounded-lg font-semibold transition-colors text-center">
                         Kembali ke Beranda
                     </a>
 
-                    @if($order->status === 'paid' && $order->purchasable)
+                    @if ($order->status === 'paid' && $order->purchasable)
                         <a href="{{ $order->purchasable_type === App\Models\Product::class
-                                ? route('products.show', $order->purchasable)
-                                : route('services.show', $order->purchasable) }}"
-                            class="flex-1 px-6 py-3 bg-white hover:bg-slate-50 text-sky-600 border-2 border-sky-600 rounded-lg font-semibold transition-colors text-center">
+                            ? route('products.show', $order->purchasable)
+                            : route('services.show', $order->purchasable) }}"
+                            class="flex-1 px-6 py-3 bg-white hover:bg-slate-50 text-primary-600 border-2 border-primary-600 rounded-lg font-semibold transition-colors text-center">
                             Lihat Item
                         </a>
                     @endif
@@ -162,18 +178,61 @@
             </div>
         </div>
 
-        @if($order->status === 'waiting_payment')
+        @if ($order->status === 'waiting_payment')
             <div class="mt-6 bg-yellow-50 border border-yellow-200 rounded-xl p-4">
                 <div class="flex items-start gap-3">
                     <svg class="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                        <path fill-rule="evenodd"
+                            d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                            clip-rule="evenodd" />
                     </svg>
                     <div>
                         <p class="font-medium text-yellow-800 mb-1">Pembayaran Belum Selesai</p>
-                        <p class="text-sm text-yellow-700">Silakan selesaikan pembayaran Anda untuk melanjutkan pesanan.</p>
+                        <p class="text-sm text-yellow-700">Silakan klik tombol "Bayar Sekarang" untuk melanjutkan proses
+                            pembayaran Anda.</p>
                     </div>
                 </div>
             </div>
         @endif
     </div>
+
+    @if ($order->status === 'waiting_payment' && $order->snap_token)
+        <!-- Midtrans Snap JS -->
+        <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}">
+        </script>
+        <script type="text/javascript">
+            document.getElementById('pay-button').addEventListener('click', function() {
+                // Show loading state
+                this.disabled = true;
+                this.innerHTML =
+                    '<span class="flex items-center justify-center gap-2"><svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Memproses...</span>';
+
+                snap.pay('{{ $order->snap_token }}', {
+                    onSuccess: function(result) {
+                        console.log('Payment success:', result);
+                        window.location.href = '{{ route('order.success') }}';
+                    },
+                    onPending: function(result) {
+                        console.log('Payment pending:', result);
+                        window.location.href = '{{ route('order.pending') }}';
+                    },
+                    onError: function(result) {
+                        console.error('Payment error:', result);
+                        alert('Pembayaran gagal. Silakan coba lagi.');
+                        // Reset button
+                        document.getElementById('pay-button').disabled = false;
+                        document.getElementById('pay-button').innerHTML =
+                            '<span class="flex items-center justify-center gap-2"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>Bayar Sekarang</span>';
+                    },
+                    onClose: function() {
+                        console.log('Customer closed the popup without finishing the payment');
+                        // Reset button
+                        document.getElementById('pay-button').disabled = false;
+                        document.getElementById('pay-button').innerHTML =
+                            '<span class="flex items-center justify-center gap-2"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>Bayar Sekarang</span>';
+                    }
+                });
+            });
+        </script>
+    @endif
 </x-app-layout>

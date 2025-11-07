@@ -34,16 +34,17 @@ class MultiStepRegistration extends Component
 
     // Step 2: UMKM data
     public $business_name = '';
-    public $umkm_category_id  = '';
+    public $umkm_category_id = '';
     public $city = '';
     public $latitude;
     public $longitude;
+    public $address = '';
     public $business_description = '';
     public $umkmCategories = [];
 
     // Step 3: Product data
     public $product_name = '';
-    public $product_category_id  = '';
+    public $product_category_id = '';
     public $product_photo;
     public $product_description = '';
     public $productCategories = [];
@@ -58,19 +59,22 @@ class MultiStepRegistration extends Component
         'email.unique' => 'Email sudah terdaftar',
         'phone_number.required' => 'Nomor telepon wajib diisi',
         'phone_number.regex' => 'Nomor telepon harus angka dan diawali +62 atau 08 (contoh: +628123456789 atau 08123456789)',
+        'phone_number.unique' => 'Nomor telepon sudah terdaftar',
         'password.required' => 'Password wajib diisi',
         'password.min' => 'Password minimal 8 karakter',
         'password.confirmed' => 'Konfirmasi password tidak cocok',
         'agree_terms.accepted' => 'Anda harus menyetujui syarat dan ketentuan',
         'business_name.required' => 'Nama usaha wajib diisi',
         'umkm_category_id.required' => 'Kategori usaha wajib dipilih',
-        'umkm_category_id.exists'   => 'Kategori usaha tidak valid',
+        'umkm_category_id.exists' => 'Kategori usaha tidak valid',
         'city.required' => 'Kota wajib diisi',
+        'latitude.required' => 'Lokasi usaha wajib dipilih pada peta',
+        'longitude.required' => 'Lokasi usaha wajib dipilih pada peta',
         'product_name.required' => 'Nama produk wajib diisi',
         'product_photo.image' => 'File harus berupa gambar',
         'product_photo.max' => 'Ukuran gambar maksimal 2MB',
         'product_category_id.required' => 'Kategori produk wajib dipilih',
-        'product_category_id.exists'   => 'Kategori produk tidak valid',
+        'product_category_id.exists' => 'Kategori produk tidak valid',
     ];
 
     public function mount()
@@ -194,6 +198,7 @@ class MultiStepRegistration extends Component
                     'city' => $this->city,
                     'latitude' => $this->latitude,
                     'longitude' => $this->longitude,
+                    'address' => $this->address,
                     'business_description' => $this->business_description,
                 ]
             ]);
@@ -220,6 +225,7 @@ class MultiStepRegistration extends Component
             $this->city = $step2Data['city'] ?? $this->city;
             $this->latitude = $step2Data['latitude'] ?? $this->latitude;
             $this->longitude = $step2Data['longitude'] ?? $this->longitude;
+            $this->address = $step2Data['address'] ?? $this->address;
             $this->business_description = $step2Data['business_description'] ?? $this->business_description;
         }
     }
@@ -260,10 +266,12 @@ class MultiStepRegistration extends Component
     {
         return [
             'business_name' => 'required|string|max:255',
-            'umkm_category_id'   => 'required|exists:event_and_umkm_categories,id',
+            'umkm_category_id' => 'required|exists:event_and_umkm_categories,id',
             'city' => 'required|string|max:255',
-            'latitude' => 'nullable|numeric',
-            'longitude' => 'nullable|numeric',
+            'latitude' => 'required|numeric|between:-90,90',
+            'longitude' => 'required|numeric|between:-180,180',
+            'address' => 'nullable|string|max:500',
+            'business_description' => 'nullable|string|max:1000',
         ];
     }
 
@@ -274,6 +282,7 @@ class MultiStepRegistration extends Component
             'product_name' => 'required|string|max:255',
             'product_category_id' => 'required|integer|exists:product_categories,id',
             'product_photo' => 'nullable|image|max:2048',
+            'product_description' => 'nullable|string|max:1000',
         ];
     }
 
@@ -309,6 +318,11 @@ class MultiStepRegistration extends Component
 
         // Update URL
         $this->dispatch('updateUrl', step: $this->currentStep);
+
+        // Dispatch event to browser to reinitialize map when going back to step 2
+        if ($this->currentStep == 2) {
+            $this->js('window.dispatchEvent(new Event("reinit-map"))');
+        }
     }
 
     public function setLocation($lat, $lng)
@@ -340,7 +354,7 @@ class MultiStepRegistration extends Component
             $last = trim((string) $this->last_name);
             $user = User::create([
                 'first_name' => $this->first_name,
-                'last_name'    => $last === '' ? null : $last,
+                'last_name' => $last === '' ? null : $last,
                 'role_id' => 2,
                 'email' => $this->email,
                 'phone_number' => $this->phone_number,
@@ -351,7 +365,7 @@ class MultiStepRegistration extends Component
             Auth::login($user);
         }
 
-        // Create UMKM
+        // Create UMKM with address field
         $umkm = Umkm::create([
             'user_id' => $user->id,
             'name' => $this->business_name,
@@ -359,6 +373,7 @@ class MultiStepRegistration extends Component
             'city' => $this->city,
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
+            'address' => $this->address,
             'description' => $this->business_description,
         ]);
 
@@ -373,9 +388,13 @@ class MultiStepRegistration extends Component
 
         // Upload product photo using Spatie Media Library
         if ($this->product_photo) {
-            $product->addMedia($this->product_photo->getRealPath())
-                ->usingFileName($this->product_photo->getClientOriginalName())
-                ->toMediaCollection('product_photos');
+            try {
+                $product->addMedia($this->product_photo->getRealPath())
+                    ->usingFileName($this->product_photo->getClientOriginalName())
+                    ->toMediaCollection('product');
+            } catch (\Exception $e) {
+                Log::error('Failed to upload product photo: ' . $e->getMessage());
+            }
         }
 
         // Clear registration session data

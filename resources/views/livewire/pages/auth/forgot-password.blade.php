@@ -38,7 +38,7 @@ new #[Layout('layouts.guest')] class extends Component {
         <!-- Header Section -->
         <div class="text-center">
             <div
-                class="mx-auto h-16 w-16 bg-gradient-to-br from-primary via-primary-dark to-primary-hover rounded-full flex items-center justify-center shadow-lg">
+                class="mx-auto h-16 w-16 bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 rounded-full flex items-center justify-center shadow-lg">
                 <svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
@@ -88,7 +88,7 @@ new #[Layout('layouts.guest')] class extends Component {
                             </svg>
                         </div>
                         <input wire:model="email" id="email" type="email" name="email" required autofocus
-                            class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent transition duration-150 ease-in-out text-gray-900 placeholder-gray-400 sm:text-sm"
+                            class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition duration-150 ease-in-out text-gray-900 placeholder-gray-400 sm:text-sm"
                             placeholder="nama@email.com" />
                     </div>
                     @error('email')
@@ -106,7 +106,7 @@ new #[Layout('layouts.guest')] class extends Component {
                 <!-- Submit Button -->
                 <div>
                     <button type="submit"
-                        class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-md text-sm font-semibold text-white bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 transition duration-150 ease-in-out transform hover:scale-[1.02] active:scale-[0.98]">
+                        class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-md text-sm font-semibold text-white bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition duration-150 ease-in-out transform hover:scale-[1.02] active:scale-[0.98]">
                         <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />

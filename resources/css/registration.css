@@ -70,8 +70,8 @@ body {
     transition: all 0.3s;
 }
 .progress-step.active .step-circle {
-    @apply bg-primary-dark border-primary-dark text-white;
+    @apply bg-primary-600 border-primary-600 text-white;
 }
 .progress-step.completed .step-circle {
-    @apply bg-primary border-primary text-white;
+    @apply bg-primary-500 border-primary-500 text-white;
 }

@@ -13,7 +13,7 @@
 
     <div
         class="mx-auto  w-full h-fit rounded-2xl bg-white/95 backdrop-blur shadow-[0_20px_60px_rgba(17,65,119,0.20)] ring-1 ring-gray-200 overflow-hidden">
-        <div class="bg-gradient-to-r from-sky-500 to-sky-600 px-6 py-4">
+        <div class="bg-gradient-to-r from-primary-500 to-primary-600 px-6 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
@@ -24,7 +24,7 @@
                     </div>
                     <div>
                         <h2 class="text-xl font-bold text-white">Profile</h2>
-                        <p class="text-sm text-sky-200">Transaksi pembelian Anda</p>
+                        <p class="text-sm text-primary-200">Transaksi pembelian Anda</p>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                 <div class="mb-4 flex items-center gap-2">
                     <span class="text-sm text-gray-600">File dipilih: {{ $avatar->getClientOriginalName() }}</span>
                     <button wire:click="uploadAvatar"
-                        class="px-4 py-1.5 text-xs rounded-full bg-sky-600 hover:bg-sky-700 text-white">
+                        class="px-4 py-1.5 text-xs rounded-full bg-primary-600 hover:bg-primary-700 text-white">
                         Simpan Avatar
                     </button>
                 </div>
@@ -75,7 +75,7 @@
                                     class="flex-1 bg-transparent border-none focus:ring-0 text-gray-800 font-medium">
                             @else
                                 <input type="text" wire:model.live="name"
-                                    class="flex-1 rounded-lg border-gray-300 focus:ring-sky-500 focus:border-sky-500">
+                                    class="flex-1 rounded-lg border-gray-300 focus:ring-primary-500 focus:border-primary-500">
                             @endif
 
                             @if (!$editing['name'])
@@ -85,7 +85,7 @@
                                 </button>
                             @else
                                 <button wire:click="save('name')"
-                                    class="text-xs px-4 py-1.5 rounded-full bg-sky-600 hover:bg-sky-700 text-white">
+                                    class="text-xs px-4 py-1.5 rounded-full bg-primary-600 hover:bg-primary-700 text-white">
                                     Save
                                 </button>
                             @endif
@@ -104,7 +104,7 @@
                                     class="flex-1 bg-transparent border-none focus:ring-0 text-gray-800 font-medium">
                             @else
                                 <input type="email" wire:model.live="email"
-                                    class="flex-1 rounded-lg border-gray-300 focus:ring-sky-500 focus:border-sky-500">
+                                    class="flex-1 rounded-lg border-gray-300 focus:ring-primary-500 focus:border-primary-500">
                             @endif
 
                             @if (!$editing['email'])
@@ -114,7 +114,7 @@
                                 </button>
                             @else
                                 <button wire:click="save('email')"
-                                    class="text-xs px-4 py-1.5 rounded-full bg-sky-600 hover:bg-sky-700 text-white">
+                                    class="text-xs px-4 py-1.5 rounded-full bg-primary-600 hover:bg-primary-700 text-white">
                                     Save
                                 </button>
                             @endif
@@ -133,7 +133,7 @@
                                     class="flex-1 bg-transparent border-none focus:ring-0 text-gray-800 font-medium">
                             @else
                                 <input type="text" wire:model.live="phone"
-                                    class="flex-1 rounded-lg border-gray-300 focus:ring-sky-500 focus:border-sky-500">
+                                    class="flex-1 rounded-lg border-gray-300 focus:ring-primary-500 focus:border-primary-500">
                             @endif
 
                             @if (!$editing['phone'])
@@ -143,7 +143,7 @@
                                 </button>
                             @else
                                 <button wire:click="save('phone')"
-                                    class="text-xs px-4 py-1.5 rounded-full bg-sky-600 hover:bg-sky-700 text-white">
+                                    class="text-xs px-4 py-1.5 rounded-full bg-primary-600 hover:bg-primary-700 text-white">
                                     Save
                                 </button>
                             @endif
@@ -171,7 +171,7 @@
                                 <div class="relative">
                                     <input type="{{ $show_current_password ? 'text' : 'password' }}"
                                         wire:model="current_password" placeholder="Password saat ini"
-                                        class="w-full rounded-lg border-gray-300 focus:ring-sky-500 focus:border-sky-500 pr-10">
+                                        class="w-full rounded-lg border-gray-300 focus:ring-primary-500 focus:border-primary-500 pr-10">
                                     <button type="button" wire:click="$toggle('show_current_password')"
                                         class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -194,7 +194,7 @@
                                 <div class="relative">
                                     <input type="{{ $show_password ? 'text' : 'password' }}" wire:model="password"
                                         placeholder="Password baru"
-                                        class="w-full rounded-lg border-gray-300 focus:ring-sky-500 focus:border-sky-500 pr-10">
+                                        class="w-full rounded-lg border-gray-300 focus:ring-primary-500 focus:border-primary-500 pr-10">
                                     <button type="button" wire:click="$toggle('show_password')"
                                         class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor"
@@ -218,7 +218,7 @@
                                 <div class="relative">
                                     <input type="{{ $show_password_confirmation ? 'text' : 'password' }}"
                                         wire:model="password_confirmation" placeholder="Konfirmasi password baru"
-                                        class="w-full rounded-lg border-gray-300 focus:ring-sky-500 focus:border-sky-500 pr-10">
+                                        class="w-full rounded-lg border-gray-300 focus:ring-primary-500 focus:border-primary-500 pr-10">
                                     <button type="button" wire:click="$toggle('show_password_confirmation')"
                                         class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor"
@@ -237,7 +237,7 @@
                                 </div>
 
                                 <button wire:click="save('password')"
-                                    class="text-xs px-4 py-1.5 rounded-full bg-sky-600 hover:bg-sky-700 text-white">
+                                    class="text-xs px-4 py-1.5 rounded-full bg-primary-600 hover:bg-primary-700 text-white">
                                     Save Password
                                 </button>
                             </div>
@@ -262,7 +262,7 @@
                             </button>
                         @else
                             <button wire:click="save('about')"
-                                class="text-xs px-4 py-1.5 rounded-full bg-sky-600 hover:bg-sky-700 text-white">
+                                class="text-xs px-4 py-1.5 rounded-full bg-primary-600 hover:bg-primary-700 text-white">
                                 Save
                             </button>
                         @endif
@@ -274,7 +274,7 @@
                         </p>
                     @else
                         <textarea rows="4" wire:model.live="about"
-                            class="w-full rounded-lg border-gray-300 focus:ring-sky-500 focus:border-sky-500"></textarea>
+                            class="w-full rounded-lg border-gray-300 focus:ring-primary-500 focus:border-primary-500"></textarea>
                     @endif
                 </div>
             </div>

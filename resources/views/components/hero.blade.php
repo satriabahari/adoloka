@@ -3,7 +3,7 @@
     <img src="/images/home/hero.jpg" alt="Background" class="w-full h-screen object-cover block select-none bg-white"
         style="box-shadow: none; border: none;">
 
-    <div class="absolute inset-0 bg-gradient-to-b from-sky-900/50 via-sky-800/40 to-sky-900/60"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-primary-900/50 via-primary-800/40 to-primary-900/60"></div>
 
     <!-- Overlay konten -->
     <div class="absolute inset-0 flex flex-col justify-center items-center text-center px-4">
@@ -13,10 +13,6 @@
         <p class="text-lg md:text-xl text-gray-100 mb-8 max-w-2xl animate-fade-in-up animation-delay-200">
             Membantu bisnismu dikenal lebih luas lewat kehadiran langsung di event yang tepat sasaran
         </p>
-        <button
-            class="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary-hover text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 animate-fade-in animation-delay-400">
-            Produk UMKM
-        </button>
     </div>
 </div>
 

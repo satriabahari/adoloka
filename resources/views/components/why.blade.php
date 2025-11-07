@@ -1,14 +1,14 @@
-<div class="bg-gradient-to-b from-sky-50 to-white py-16 px-8">
+<div class="bg-sky-50 rounded-2xl py-16 px-12">
     <div class="container mx-auto">
-        <h2 class="text-3xl md:text-4xl font-bold text-sky-900 mb-12 text-center md:text-left animate-fade-in">
-            Mengapa Harus <span class="text-sky-600">AdoLoka?</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-primary-900 mb-12 text-center md:text-left animate-fade-in">
+            Mengapa Harus <span class="text-primary-600">Adoloka?</span>
         </h2>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <!-- Certificate Image -->
             <div class="order-2 lg:order-1 animate-slide-in-left">
                 <div
-                    class="bg-white rounded-3xl shadow-2xl p-3 border border-sky-100 hover:shadow-sky-200 transition-all duration-300 hover:-translate-y-2">
+                    class="bg-white rounded-3xl shadow-2xl p-3 border border-primary-100 hover:shadow-primary-200 transition-all duration-300 hover:-translate-y-2">
                     <img src="/images/home/why.jpg" alt="why" class="w-full rounded-2xl">
                 </div>
             </div>
@@ -16,65 +16,65 @@
             <!-- Benefits List -->
             <div class="order-1 lg:order-2 animate-slide-in-right">
                 <div
-                    class="bg-white rounded-2xl shadow-xl p-8 border border-sky-100 hover:shadow-2xl transition-shadow duration-300">
-                    <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                        <span class="w-1 h-8 bg-sky-500 rounded-full"></span>
+                    class="bg-white rounded-2xl shadow-xl p-8 border border-primary-100 hover:shadow-2xl transition-shadow duration-300">
+                    <h3 class="text-xl font-bold text-sky-900 mb-6 flex items-center gap-2">
+                        <span class="w-1 h-8 bg-primary-500 rounded-full"></span>
                         Jika kamu merasa...
                     </h3>
 
                     <ul class="space-y-5">
                         <li class="flex items-start group animate-fade-in-up" style="animation-delay: 0.1s">
                             <div
-                                class="flex-shrink-0 w-6 h-6 bg-sky-500 rounded-full mt-1 mr-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                class="flex-shrink-0 w-6 h-6 bg-primary-500 rounded-full mt-1 mr-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                 <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
                                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                                         clip-rule="evenodd" />
                                 </svg>
                             </div>
-                            <p class="text-gray-700 group-hover:text-gray-900 transition-colors">
+                            <p class="text-sky-800 group-hover:text-sky-900 transition-colors">
                                 Terjebak merasa bisnismu tidak bisa berkembang dan membutuhkan event yang tepat
                             </p>
                         </li>
 
                         <li class="flex items-start group animate-fade-in-up" style="animation-delay: 0.2s">
                             <div
-                                class="flex-shrink-0 w-6 h-6 bg-sky-500 rounded-full mt-1 mr-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                class="flex-shrink-0 w-6 h-6 bg-primary-500 rounded-full mt-1 mr-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                 <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
                                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                                         clip-rule="evenodd" />
                                 </svg>
                             </div>
-                            <p class="text-gray-700 group-hover:text-gray-900 transition-colors">
+                            <p class="text-sky-800 group-hover:text-sky-900 transition-colors">
                                 Kesulitan menemukan platform yang tepat untuk mempromosikan produk secara efektif
                             </p>
                         </li>
 
                         <li class="flex items-start group animate-fade-in-up" style="animation-delay: 0.3s">
                             <div
-                                class="flex-shrink-0 w-6 h-6 bg-sky-500 rounded-full mt-1 mr-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                class="flex-shrink-0 w-6 h-6 bg-primary-500 rounded-full mt-1 mr-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                 <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
                                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                                         clip-rule="evenodd" />
                                 </svg>
                             </div>
-                            <p class="text-gray-700 group-hover:text-gray-900 transition-colors">
+                            <p class="text-sky-800 group-hover:text-sky-900 transition-colors">
                                 Belum ada bukti kredibilitas untuk meyakinkan event organizer
                             </p>
                         </li>
 
                         <li class="flex items-start group animate-fade-in-up" style="animation-delay: 0.4s">
                             <div
-                                class="flex-shrink-0 w-6 h-6 bg-sky-500 rounded-full mt-1 mr-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                class="flex-shrink-0 w-6 h-6 bg-primary-500 rounded-full mt-1 mr-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                 <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
                                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                                         clip-rule="evenodd" />
                                 </svg>
                             </div>
-                            <p class="text-gray-700 group-hover:text-gray-900 transition-colors">
+                            <p class="text-sky-800 group-hover:text-sky-900 transition-colors">
                                 Promosi bisnismu di AdoLoka aman dan terpercaya
                             </p>
                         </li>

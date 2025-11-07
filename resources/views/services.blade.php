@@ -7,7 +7,7 @@
         <!-- Header -->
         <div class="mb-8">
             <a href="{{ route('home') }}"
-                class="flex items-center gap-2 text-sky-600 hover:text-sky-700 transition-colors mb-4">
+                class="flex items-center gap-2 text-primary-600 hover:text-primary-700 transition-colors mb-4">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
@@ -44,16 +44,16 @@
                     @if ($showButtonsMobile || $showButtonsDesktop)
                         <div class="gap-2 {{ $buttonClass }}">
                             <button onclick="scrollContainer('{{ $category->slug }}', -1)"
-                                class="p-2 rounded-full bg-white shadow-md hover:bg-sky-50 transition-colors">
-                                <svg class="w-5 h-5 text-sky-600" fill="none" stroke="currentColor"
+                                class="p-2 rounded-full bg-white shadow-md hover:bg-primary-50 transition-colors">
+                                <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M15 19l-7-7 7-7" />
                                 </svg>
                             </button>
                             <button onclick="scrollContainer('{{ $category->slug }}', 1)"
-                                class="p-2 rounded-full bg-white shadow-md hover:bg-sky-50 transition-colors">
-                                <svg class="w-5 h-5 text-sky-600" fill="none" stroke="currentColor"
+                                class="p-2 rounded-full bg-white shadow-md hover:bg-primary-50 transition-colors">
+                                <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M9 5l7 7-7 7" />
@@ -72,7 +72,7 @@
                                 class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col">
                                 <!-- Service Image -->
                                 <div
-                                    class="h-56 overflow-hidden bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center">
+                                    class="h-56 overflow-hidden bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center">
                                     <img src="{{ $service->image_url }}" alt="{{ $service->name }}"
                                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                                     {{-- <svg class="w-20 h-20 text-white opacity-80" fill="none" stroke="currentColor"
@@ -95,7 +95,7 @@
                                     <!-- Service Info -->
                                     <div class="space-y-2 mb-4">
                                         @if ($service->has_brand_identity)
-                                            <div class="flex items-center gap-2 text-sm text-sky-700">
+                                            <div class="flex items-center gap-2 text-sm text-primary-700">
                                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                                     <path fill-rule="evenodd"
                                                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -133,7 +133,7 @@
                                     <!-- Price & Button -->
                                     <div class="flex items-center justify-between pt-4 border-t border-slate-200">
                                         <div>
-                                            <p class="text-2xl font-bold text-sky-600">
+                                            <p class="text-2xl font-bold text-primary-600">
                                                 Rp {{ number_format($service->price, 0, ',', '.') }}
                                             </p>
                                             @if ($service->unit)
@@ -141,7 +141,7 @@
                                             @endif
                                         </div>
                                         <a href="{{ route('services.show', $service) }}"
-                                            class="px-6 py-2.5 bg-sky-600 hover:bg-sky-700 text-white rounded-lg font-medium transition-colors shadow-md hover:shadow-lg">
+                                            class="px-6 py-2.5 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors shadow-md hover:shadow-lg">
                                             Lihat Detail
                                         </a>
                                     </div>

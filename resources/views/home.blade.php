@@ -5,7 +5,7 @@
             <x-service-card />
             <x-events-home :events="$events" />
             <x-category-card :categories="$categories" />
-            <x-why />
+            <x-benefits :items="$benefits" />
             <x-feature />
             <x-faq />
         </div>

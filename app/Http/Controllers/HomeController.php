@@ -16,6 +16,10 @@ class HomeController extends Controller
 
         $categories = ProductCategory::orderBy('name')->get();
 
-        return view('home', compact('events', 'categories'));
+        $benefits = config('adoloka.home_benefits');
+
+        $features = config('adoloka.home_features');
+
+        return view('home', compact('events', 'categories', 'benefits', 'features'));
     }
 }

@@ -2,7 +2,7 @@
     <div class="container mx-auto">
         <!-- Warning Box -->
         <div class="mb-12 text-center animate-fade-in">
-            <h3 class="text-2xl md:text-3xl font-bold mb-4 text-sky-900">
+            <h3 class="text-2xl md:text-3xl font-bold mb-4 text-primary-900">
                 TIDAK PERLU KHAWATIR!
             </h3>
             <p class="text-gray-600 text-base md:text-lg max-w-3xl mx-auto">
@@ -13,9 +13,8 @@
 
         <!-- Features Grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mx-auto max-w-7xl">
-
             <!-- Feature Card 1 - span 2 column -->
-            <div class="md:col-span-2 bg-gradient-to-r from-sky-600 via-sky-500 to-sky-600 rounded-2xl p-8 text-white shadow-xl hover:shadow-2xl transition-all duration-300 order-3 md:order-1 group animate-fade-in-up"
+            <div class="md:col-span-2 bg-gradient-to-r from-primary-600 via-primary-500 to-primary-600 rounded-2xl p-8 text-white shadow-xl hover:shadow-2xl transition-all duration-300 order-3 md:order-1 group animate-fade-in-up"
                 style="animation-delay: 0.1s">
                 <div class="flex items-start gap-4">
                     <div
@@ -30,7 +29,7 @@
                         <h3 class="text-2xl font-bold mb-3">
                             Jaminan Kualitas dan Keahlian Terverifikasi
                         </h3>
-                        <p class="text-sky-50">
+                        <p class="text-primary-50">
                             Setiap partner telah melalui proses verifikasi ketat untuk memastikan kualitas dan
                             profesionalitas terbaik, mulai dari keahlian teknis, pengalaman kerja, hingga reputasi
                             pelayanan. Kami memastikan setiap kolaborasi yang terjalin memberikan hasil yang optimal,
@@ -42,17 +41,17 @@
             </div>
 
             <!-- Feature Card 2 -->
-            <div class="bg-white border-2 border-sky-200 rounded-2xl p-8 shadow-lg hover:shadow-2xl hover:border-sky-400 transition-all duration-300 order-1 md:order-2 group animate-fade-in-up"
+            <div class="bg-white border-2 border-primary-200 rounded-2xl p-8 shadow-lg hover:shadow-2xl hover:border-primary-400 transition-all duration-300 order-1 md:order-2 group animate-fade-in-up"
                 style="animation-delay: 0.2s">
                 <div
-                    class="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-sky-500 group-hover:scale-110 transition-all duration-300">
-                    <svg class="w-6 h-6 text-sky-600 group-hover:text-white transition-colors" fill="none"
+                    class="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary-500 group-hover:scale-110 transition-all duration-300">
+                    <svg class="w-6 h-6 text-primary-600 group-hover:text-white transition-colors" fill="none"
                         stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                     </svg>
                 </div>
-                <h3 class="text-xl font-bold text-sky-900 mb-3 group-hover:text-sky-600 transition-colors">
+                <h3 class="text-xl font-bold text-primary-900 mb-3 group-hover:text-primary-600 transition-colors">
                     Kemudahan Interaksi
                 </h3>
                 <p class="text-gray-600">
@@ -61,17 +60,17 @@
             </div>
 
             <!-- Feature Card 3 -->
-            <div class="bg-white border-2 border-sky-200 rounded-2xl p-8 shadow-lg hover:shadow-2xl hover:border-sky-400 transition-all duration-300 order-2 md:order-3 group animate-fade-in-up"
+            <div class="bg-white border-2 border-primary-200 rounded-2xl p-8 shadow-lg hover:shadow-2xl hover:border-primary-400 transition-all duration-300 order-2 md:order-3 group animate-fade-in-up"
                 style="animation-delay: 0.3s">
                 <div
-                    class="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-sky-500 group-hover:scale-110 transition-all duration-300">
-                    <svg class="w-6 h-6 text-sky-600 group-hover:text-white transition-colors" fill="none"
+                    class="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary-500 group-hover:scale-110 transition-all duration-300">
+                    <svg class="w-6 h-6 text-primary-600 group-hover:text-white transition-colors" fill="none"
                         stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                 </div>
-                <h3 class="text-xl font-bold text-sky-900 mb-3 group-hover:text-sky-600 transition-colors">
+                <h3 class="text-xl font-bold text-primary-900 mb-3 group-hover:text-primary-600 transition-colors">
                     Efisiensi Waktu dan Proses
                 </h3>
                 <p class="text-gray-600">
@@ -80,7 +79,7 @@
             </div>
 
             <!-- Feature Card 4 - span 2 column -->
-            <div class="md:col-span-2 bg-gradient-to-r from-sky-600 via-sky-500 to-sky-600 rounded-2xl p-8 text-white shadow-xl hover:shadow-2xl transition-all duration-300 order-4 group animate-fade-in-up"
+            <div class="md:col-span-2 bg-gradient-to-r from-primary-600 via-primary-500 to-primary-600 rounded-2xl p-8 text-white shadow-xl hover:shadow-2xl transition-all duration-300 order-4 group animate-fade-in-up"
                 style="animation-delay: 0.4s">
                 <div class="flex items-start gap-4">
                     <div
@@ -95,7 +94,7 @@
                         <h3 class="text-2xl font-bold mb-3">
                             Dukungan Profesional dan Transparansi
                         </h3>
-                        <p class="text-sky-50">
+                        <p class="text-primary-50">
                             Kami menjamin proses kerja yang jelas, transparan, dan berkualitas dengan dukungan tim
                             profesional yang siap
                             membantu di setiap tahap. Seluruh aktivitas dilakukan dengan komunikasi terbuka, pelaporan
