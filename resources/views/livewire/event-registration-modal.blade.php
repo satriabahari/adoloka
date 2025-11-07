@@ -5,8 +5,8 @@
 <div>
     <!-- Trigger Button -->
     <button wire:click="openModal" type="button"
-        class="inline-flex items-center justify-center px-6 py-2.5 rounded-xl font-semibold text-sky-800
-               ring-2 ring-sky-200 hover:ring-sky-300 bg-white hover:bg-sky-50 transition-all duration-200
+        class="inline-flex items-center justify-center px-6 py-2.5 rounded-xl font-semibold text-primary-800
+               ring-2 ring-primary-200 hover:ring-primary-300 bg-white hover:bg-primary-50 transition-all duration-200
                hover:shadow-md">
         Daftar
     </button>
@@ -15,7 +15,7 @@
     <div x-data="{ show: @entangle('showModal') }" x-show="show" x-cloak x-transition:enter="transition ease-out duration-300"
         x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
         x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0" class="fixed inset-0 z-50 overflow-y-auto" style="display: none;">
+        x-transition:leave-end="opacity-0" class="fixed inset-0 z-[99] overflow-y-auto" style="display: none;">
 
         <!-- Backdrop -->
         <div class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
@@ -30,7 +30,7 @@
 
                 <!-- Header -->
                 <div
-                    class="sticky top-0 bg-gradient-to-r from-sky-500 to-sky-600 px-6 py-4 flex items-center justify-between">
+                    class="sticky top-0 bg-gradient-to-r from-primary-500 to-primary-600 px-6 py-4 flex items-center justify-between">
                     <h2 class="text-xl font-bold text-white">Form Pendaftaran Event</h2>
                     <button wire:click="closeModal" type="button"
                         class="text-white hover:bg-white/20 rounded-lg p-1 transition">
@@ -51,7 +51,7 @@
                                 Nama Brand UMKM <span class="text-red-500">*</span>
                             </label>
                             <input type="text" wire:model="umkm_brand_name"
-                                class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition">
+                                class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition">
                             @error('umkm_brand_name')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
@@ -63,7 +63,7 @@
                                 Alamat Mitra <span class="text-red-500">*</span>
                             </label>
                             <textarea wire:model="partner_address" rows="3"
-                                class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition"></textarea>
+                                class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition"></textarea>
                             @error('partner_address')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
@@ -75,7 +75,7 @@
                                 Jenis <span class="text-red-500">*</span>
                             </label>
                             <select wire:model="event_category_id"
-                                class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition">
+                                class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition">
                                 <option value="">Pilih jenis / kategori...</option>
                                 @foreach ($categories as $cat)
                                     <option value="{{ $cat->id }}">{{ $cat->name }}</option>
@@ -93,7 +93,7 @@
                                 Nama Pemilik <span class="text-red-500">*</span>
                             </label>
                             <input type="text" wire:model="owner_name"
-                                class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition">
+                                class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition">
                             @error('owner_name')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
@@ -105,7 +105,7 @@
                                 Nomor Whatsapp <span class="text-red-500">*</span>
                             </label>
                             <input type="text" wire:model="whatsapp_number"
-                                class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition"
+                                class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition"
                                 placeholder="08xxxxxxxxxx">
                             @error('whatsapp_number')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -118,7 +118,7 @@
                                 Nama Instagram
                             </label>
                             <input type="text" wire:model="instagram_name"
-                                class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition"
+                                class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition"
                                 placeholder="@username">
                             @error('instagram_name')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -131,7 +131,7 @@
                                 Foto Brand UMKM <span class="text-red-500">*</span>
                             </label>
                             <div
-                                class="relative border-2 border-dashed border-slate-300 rounded-lg p-4 hover:border-sky-400 transition">
+                                class="relative border-2 border-dashed border-slate-300 rounded-lg p-4 hover:border-primary-400 transition">
                                 <input type="file" wire:model="brand_photo" accept="image/*"
                                     class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
                                 <div class="flex flex-col items-center justify-center text-slate-600">
@@ -160,7 +160,7 @@
                                 Foto Produk <span class="text-red-500">*</span>
                             </label>
                             <div
-                                class="relative border-2 border-dashed border-slate-300 rounded-lg p-4 hover:border-sky-400 transition">
+                                class="relative border-2 border-dashed border-slate-300 rounded-lg p-4 hover:border-primary-400 transition">
                                 <input type="file" wire:model="product_photo" accept="image/*"
                                     class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
                                 <div class="flex flex-col items-center justify-center text-slate-600">
@@ -189,7 +189,7 @@
                                 KTP Pemilik UMKM <span class="text-red-500">*</span>
                             </label>
                             <div
-                                class="relative border-2 border-dashed border-slate-300 rounded-lg p-4 hover:border-sky-400 transition">
+                                class="relative border-2 border-dashed border-slate-300 rounded-lg p-4 hover:border-primary-400 transition">
                                 <input type="file" wire:model="ktp_photo" accept="image/*"
                                     class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
                                 <div class="flex flex-col items-center justify-center text-slate-600">
@@ -215,10 +215,10 @@
                         <!-- Nomor Izin Berusaha -->
                         <div>
                             <label class="block text-sm font-semibold text-slate-700 mb-2">
-                                Nomor Izin Berusaha <span class="text-sky-600 text-xs">*Jika Ada</span>
+                                Nomor Izin Berusaha <span class="text-primary-600 text-xs">*Jika Ada</span>
                             </label>
                             <input type="text" wire:model="business_license_number"
-                                class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition">
+                                class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition">
                             @error('business_license_number')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
@@ -231,7 +231,7 @@
                                 Batal
                             </button>
                             <button type="submit"
-                                class="flex-1 px-6 py-3 bg-gradient-to-r from-sky-500 to-sky-600 text-white rounded-lg font-semibold hover:from-sky-600 hover:to-sky-700 transition-all duration-200 shadow-lg hover:shadow-xl">
+                                class="flex-1 px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-lg font-semibold hover:from-primary-600 hover:to-primary-700 transition-all duration-200 shadow-lg hover:shadow-xl">
                                 <span wire:loading.remove wire:target="submit">Konfirmasi</span>
                                 <span wire:loading wire:target="submit">Menyimpan...</span>
                             </button>
@@ -244,10 +244,10 @@
 
     <!-- Loading Overlay -->
     <div wire:loading wire:target="brand_photo,product_photo,ktp_photo"
-        class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-        <div class="bg-white rounded-lg p-6 shadow-xl">
+        class="fixed inset-0 bg-black bg-opacity-50 z-[99] flex items-center justify-center pt-20">
+        <div class="bg-white rounded-lg w-fit p-6 shadow-xl m-auto">
             <div class="flex items-center gap-3">
-                <svg class="animate-spin h-6 w-6 text-sky-600" fill="none" viewBox="0 0 24 24">
+                <svg class="animate-spin h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
                         stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor"

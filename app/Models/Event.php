@@ -17,6 +17,7 @@ class Event extends Model implements HasMedia
         'description',
         'latitude',
         'longitude',
+        'address',
         'start_date',
         'end_date',
         'type',

@@ -3,7 +3,7 @@
         {{-- Back Button --}}
         {{-- <div class="mb-8">
             <a href="{{ route('home') }}"
-                class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-sky-200 text-sky-700 bg-white shadow-sm hover:bg-sky-50 hover:shadow-md transition-all duration-200 group">
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-primary-200 text-primary-700 bg-white shadow-sm hover:bg-primary-50 hover:shadow-md transition-all duration-200 group">
                 <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform duration-200" fill="none"
                     stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -15,7 +15,7 @@
 
         <div class="mb-8">
             <a href="{{ route('home') }}"
-                class="flex items-center gap-2 text-sky-600 hover:text-sky-700 transition-colors mb-4">
+                class="flex items-center gap-2 text-primary-600 hover:text-primary-700 transition-colors mb-4">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
@@ -31,14 +31,14 @@
         {{-- <div class="mb-12">
             <div class="flex items-center gap-3 mb-4">
                 <div
-                    class="h-12 w-12 rounded-full bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center shadow-lg">
+                    class="h-12 w-12 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center shadow-lg">
                     <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                 </div>
                 <h1
-                    class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-700 to-sky-900">
+                    class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary-700 to-primary-900">
                     Event Mendatang
                 </h1>
             </div>
@@ -65,8 +65,8 @@
         {{-- Empty State --}}
         @if ($events->isEmpty())
             <div class="text-center py-16">
-                <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-sky-100 mb-6">
-                    <svg class="w-10 h-10 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary-100 mb-6">
+                    <svg class="w-10 h-10 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>

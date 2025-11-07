@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\EventAndUmkmCategory;
-use App\Models\EventUmkmCategory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 

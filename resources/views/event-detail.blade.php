@@ -1,11 +1,11 @@
 <x-app-layout>
     {{-- Leaflet CSS --}}
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
     <div class="max-w-6xl mx-auto pt-12">
         <button onclick="window.history.back()"
-            class="flex items-center gap-2 text-sky-600 hover:text-sky-700 transition-colors mb-8 animate-fade-in">
+            class="flex items-center gap-2 text-primary-600 hover:text-primary-700 transition-colors mb-8 animate-fade-in">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
             </svg>
@@ -21,7 +21,7 @@
                 <div class="flex items-center justify-center flex-col">
                     <div class="mb-3">
                         <span
-                            class="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold bg-sky-500/90 backdrop-blur-sm text-white shadow-lg">
+                            class="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold bg-primary-500/90 backdrop-blur-sm text-white shadow-lg">
                             {{ ucfirst($event->type) }}
                         </span>
                     </div>
@@ -55,7 +55,7 @@
                     {{-- Event Info Card --}}
                     <div class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-100 p-6 md:p-8">
                         <div>
-                            <h2 class="text-3xl font-bold text-sky-900 mb-2">{{ $event->title }}</h2>
+                            <h2 class="text-3xl font-bold text-primary-900 mb-2">{{ $event->title }}</h2>
                             <div class="flex items-center gap-2 text-slate-600">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -74,10 +74,10 @@
                     {{-- UMKM Terkait Section --}}
                     @if ($event->registrations && $event->registrations->count() > 0)
                         <div
-                            class="bg-gradient-to-br from-sky-50 to-white rounded-2xl shadow-sm ring-1 ring-sky-100 p-6 md:p-8">
+                            class="bg-gradient-to-br from-primary-50 to-white rounded-2xl shadow-sm ring-1 ring-primary-100 p-6 md:p-8">
                             <div class="flex items-center justify-between mb-6">
                                 <div>
-                                    <h3 class="text-2xl font-bold text-sky-900">UMKM Terkait</h3>
+                                    <h3 class="text-2xl font-bold text-primary-900">UMKM Terkait</h3>
                                     <p class="text-slate-600 text-sm mt-1">{{ $event->registrations->count() }} UMKM
                                         telah
                                         terdaftar</p>
@@ -96,11 +96,11 @@
                                                 @if ($brandPhoto)
                                                     <img src="{{ $brandPhoto }}"
                                                         alt="{{ $registration->umkm_brand_name }}"
-                                                        class="w-16 h-16 rounded-lg object-cover ring-2 ring-sky-100">
+                                                        class="w-16 h-16 rounded-lg object-cover ring-2 ring-primary-100">
                                                 @else
                                                     <div
-                                                        class="w-16 h-16 rounded-lg bg-gradient-to-br from-sky-100 to-sky-200 flex items-center justify-center">
-                                                        <svg class="w-8 h-8 text-sky-600" fill="none"
+                                                        class="w-16 h-16 rounded-lg bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center">
+                                                        <svg class="w-8 h-8 text-primary-600" fill="none"
                                                             stroke="currentColor" viewBox="0 0 24 24">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                 stroke-width="2"
@@ -111,7 +111,7 @@
                                             </div>
                                             <div class="flex-1 min-w-0">
                                                 <h4
-                                                    class="font-bold text-sky-900 group-hover:text-sky-700 transition-colors truncate">
+                                                    class="font-bold text-primary-900 group-hover:text-primary-700 transition-colors truncate">
                                                     {{ $registration->umkm_brand_name }}
                                                 </h4>
                                                 <p class="text-sm text-slate-600 mt-0.5">
@@ -120,7 +120,7 @@
                                                 @if ($registration->instagram_name)
                                                     <a href="https://instagram.com/{{ ltrim($registration->instagram_name, '@') }}"
                                                         target="_blank"
-                                                        class="inline-flex items-center gap-1 text-xs text-sky-600 hover:text-sky-700 mt-2">
+                                                        class="inline-flex items-center gap-1 text-xs text-primary-600 hover:text-primary-700 mt-2">
                                                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                                                             <path
                                                                 d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
@@ -139,8 +139,9 @@
                     {{-- Location & Map Section --}}
                     <div class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-100 p-6 md:p-8">
                         <div class="flex items-start gap-3 mb-5">
-                            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-sky-100 flex items-center justify-center">
-                                <svg class="w-5 h-5 text-sky-600" fill="none" stroke="currentColor"
+                            <div
+                                class="flex-shrink-0 w-10 h-10 rounded-lg bg-primary-100 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -148,32 +149,51 @@
                                         d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
                             </div>
-                            <div>
+                            <div class="flex-1">
                                 <h3 class="text-xl font-bold text-slate-900">Lokasi Event</h3>
-                                <p class="text-slate-600 mt-1">{{ $event->title }}</p>
-                                @if($event->latitude && $event->longitude)
-                                    <a href="https://www.google.com/maps/search/?api=1&query={{ $event->latitude }},{{ $event->longitude }}"
-                                        target="_blank"
-                                        class="inline-flex items-center gap-1 text-sm text-sky-600 hover:text-sky-700 font-medium mt-2">
-                                        Buka di Google Maps
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                        </svg>
-                                    </a>
+                                @if ($event->address)
+                                    {{ $event->address }}
+                                @else
+                                    <p class="text-slate-600 mt-1" id="event-address">
+                                        <span class="inline-flex items-center gap-1 text-slate-400">
+                                            <svg class="w-4 h-4 animate-spin" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                            </svg>
+                                            Memuat alamat...
+                                        </span>
+                                    </p>
+                                @endif
+                                @if ($event->latitude && $event->longitude)
+                                    <div class="flex items-center gap-3 mt-3 flex-wrap">
+                                        <a href="https://www.google.com/maps/search/?api=1&query={{ $event->latitude }},{{ $event->longitude }}"
+                                            target="_blank"
+                                            class="inline-flex items-center gap-1.5 text-sm text-primary-600 hover:text-primary-700 font-medium px-3 py-1.5 bg-primary-50 rounded-lg hover:bg-primary-100 transition-colors">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                            </svg>
+                                            Buka di Google Maps
+                                        </a>
+                                        <span class="text-xs text-slate-500 font-mono">
+                                            {{ number_format($event->latitude, 6) }},
+                                            {{ number_format($event->longitude, 6) }}
+                                        </span>
+                                    </div>
                                 @endif
                             </div>
                         </div>
 
                         <div class="rounded-xl overflow-hidden shadow-lg ring-1 ring-slate-200">
-                            <div id="event-map" class="w-full h-[400px]"></div>
+                            <div id="event-map" class="w-full h-[400px] relative z-0"></div>
                         </div>
                     </div>
                 </div>
 
                 {{-- RIGHT SIDEBAR --}}
                 <div class="lg:col-span-1 space-y-6">
-                    {{-- Event Image Card --}}
                     <div class="sticky top-6">
                         <div class="bg-white rounded-2xl shadow-lg ring-1 ring-slate-100 p-4">
                             <div class="aspect-[4/3] rounded-xl overflow-hidden">
@@ -182,17 +202,15 @@
                             </div>
                         </div>
 
-                        {{-- Event Details Card --}}
                         <div
-                            class="bg-gradient-to-br from-sky-50 to-white rounded-2xl shadow-sm ring-1 ring-sky-100 p-6 mt-6">
-                            <h4 class="text-lg font-bold text-sky-900 mb-4">Detail Event</h4>
+                            class="bg-gradient-to-br from-primary-50 to-white rounded-2xl shadow-sm ring-1 ring-primary-100 p-6 mt-6">
+                            <h4 class="text-lg font-bold text-primary-900 mb-4">Detail Event</h4>
 
                             <div class="space-y-4">
-                                {{-- Date --}}
                                 <div class="flex items-start gap-3">
                                     <div
-                                        class="flex-shrink-0 w-10 h-10 rounded-lg bg-sky-100 flex items-center justify-center">
-                                        <svg class="w-5 h-5 text-sky-600" fill="none" stroke="currentColor"
+                                        class="flex-shrink-0 w-10 h-10 rounded-lg bg-primary-100 flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -206,11 +224,10 @@
                                     </div>
                                 </div>
 
-                                {{-- Category --}}
                                 <div class="flex items-start gap-3">
                                     <div
-                                        class="flex-shrink-0 w-10 h-10 rounded-lg bg-sky-100 flex items-center justify-center">
-                                        <svg class="w-5 h-5 text-sky-600" fill="none" stroke="currentColor"
+                                        class="flex-shrink-0 w-10 h-10 rounded-lg bg-primary-100 flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
@@ -224,15 +241,13 @@
                                     </div>
                                 </div>
 
-                                {{-- Participants --}}
                                 @if ($event->registrations && $event->registrations->count() > 0)
                                     <div class="flex items-start gap-3">
                                         <div
-                                            class="flex-shrink-0 w-10 h-10 rounded-lg bg-sky-100 flex items-center justify-center">
-                                            <svg class="w-5 h-5 text-sky-600" fill="none"
+                                            class="flex-shrink-0 w-10 h-10 rounded-lg bg-primary-100 flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-primary-600" fill="none"
                                                 stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    stroke-width="2"
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                                             </svg>
                                         </div>
@@ -245,8 +260,7 @@
                                 @endif
                             </div>
 
-                            {{-- CTA Button --}}
-                            <div class="mt-6 pt-6 border-t border-sky-100">
+                            <div class="mt-6 pt-6 border-t border-primary-100">
                                 @livewire('event-registration-modal', ['event' => $event], key('sidebar-register'))
                             </div>
                         </div>
@@ -262,21 +276,23 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Data dari Laravel
             const eventTitle = @json($event->title);
             const eventLat = {{ $event->latitude ?? '-1.6101' }};
             const eventLng = {{ $event->longitude ?? '103.6131' }};
+            const GEOAPIFY_API_KEY = '{{ env('GEOAPIFY_API_KEY', '') }}';
 
-            // Inisialisasi map
-            const map = L.map('event-map').setView([eventLat, eventLng], 15);
+            // Initialize map
+            const map = L.map('event-map', {
+                zoomControl: true,
+                scrollWheelZoom: true
+            }).setView([eventLat, eventLng], 15);
 
-            // Tambahkan tile layer (OpenStreetMap)
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
                 maxZoom: 19
             }).addTo(map);
 
-            // Custom icon untuk marker
+            // Custom marker icon
             const customIcon = L.divIcon({
                 className: 'custom-marker',
                 html: `
@@ -293,45 +309,99 @@
                 popupAnchor: [0, -40]
             });
 
-            // Tambahkan marker
-            const marker = L.marker([eventLat, eventLng], { icon: customIcon }).addTo(map);
+            const marker = L.marker([eventLat, eventLng], {
+                icon: customIcon
+            }).addTo(map);
 
-            // URL Google Maps
             const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${eventLat},${eventLng}`;
 
-            // Popup content dengan link ke Google Maps
-            const popupContent = `
+            // Fetch address using Geoapify Reverse Geocoding
+            if (GEOAPIFY_API_KEY) {
+                fetch(
+                        `https://api.geoapify.com/v1/geocode/reverse?lat=${eventLat}&lon=${eventLng}&apiKey=${GEOAPIFY_API_KEY}`
+                    )
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.features && data.features.length > 0) {
+                            const address = data.features[0].properties.formatted ||
+                                data.features[0].properties.address_line1 ||
+                                'Alamat tidak tersedia';
+
+                            // Update address display
+                            const addressElement = document.getElementById('event-address');
+                            if (addressElement) {
+                                addressElement.textContent = address;
+                            }
+
+                            // Update popup with address
+                            const popupContent = `
+                                <div class="text-center p-2" style="min-width: 200px;">
+                                    <h4 class="font-bold text-slate-900 mb-2">${eventTitle}</h4>
+                                    <p class="text-xs text-slate-600 mb-2">${address}</p>
+                                    <p class="text-xs text-slate-500 mb-3 font-mono">${eventLat.toFixed(6)}, ${eventLng.toFixed(6)}</p>
+                                </div>
+                            `;
+
+                            marker.bindPopup(popupContent, {
+                                maxWidth: 300,
+                                className: 'custom-popup'
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching address:', error);
+                        const addressElement = document.getElementById('event-address');
+                        if (addressElement) {
+                            addressElement.textContent = eventTitle;
+                        }
+                    });
+            } else {
+                const addressElement = document.getElementById('event-address');
+                if (addressElement) {
+                    addressElement.textContent = eventTitle;
+                }
+            }
+
+            // Default popup without address (will be updated if geocoding succeeds)
+            const defaultPopup = `
                 <div class="text-center p-2" style="min-width: 200px;">
                     <h4 class="font-bold text-slate-900 mb-2">${eventTitle}</h4>
                     <p class="text-xs text-slate-600 mb-3">${eventLat.toFixed(6)}, ${eventLng.toFixed(6)}</p>
-                    <a href="${googleMapsUrl}"
-                       target="_blank"
-                       class="inline-flex items-center gap-2 bg-sky-600 hover:bg-sky-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                        </svg>
-                        Buka di Google Maps
-                    </a>
                 </div>
             `;
 
-            marker.bindPopup(popupContent, {
+            marker.bindPopup(defaultPopup, {
                 maxWidth: 300,
                 className: 'custom-popup'
             });
 
-            // Otomatis buka popup
             marker.openPopup();
 
-            // Klik marker untuk buka Google Maps
             marker.on('click', function() {
                 window.open(googleMapsUrl, '_blank');
             });
         });
     </script>
 
-    {{-- Custom CSS untuk styling popup --}}
     <style>
+        /* Ensure event detail map has lower z-index than modal */
+        #event-map {
+            position: relative;
+            z-index: 0 !important;
+        }
+
+        #event-map .leaflet-pane,
+        #event-map .leaflet-map-pane,
+        #event-map .leaflet-tile-pane,
+        #event-map .leaflet-overlay-pane,
+        #event-map .leaflet-shadow-pane,
+        #event-map .leaflet-marker-pane,
+        #event-map .leaflet-tooltip-pane,
+        #event-map .leaflet-popup-pane,
+        #event-map .leaflet-control-container {
+            z-index: auto !important;
+        }
+
         .custom-marker {
             background: transparent;
             border: none;

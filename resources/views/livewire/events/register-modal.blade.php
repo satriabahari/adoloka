@@ -86,7 +86,7 @@
                         <div>
                             <label class="block text-sm font-medium text-slate-700">Nomor Izin Berusaha
                                 <span class="text-slate-400">*</span>
-                                <a class="text-sky-600 underline">Jika Ada</a>
+                                <a class="text-primary-600 underline">Jika Ada</a>
                             </label>
                             <input type="text" wire:model.defer="business_permit_no"
                                 class="w-full border-0 border-b border-dotted border-slate-300 focus:border-slate-400 focus:ring-0 rounded-none px-0"

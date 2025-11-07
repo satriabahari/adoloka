@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->decimal('latitude', 10, 8)->nullable();
             $table->decimal('longitude', 11, 8)->nullable();
+            $table->text('address')->nullable();
             $table->date('start_date')->index();
             $table->date('end_date')->index();
             $table->enum('type', ["mingguan", "tahunan"])->index();

@@ -31,9 +31,12 @@ class EventRegistrationModal extends Component
     protected $rules = [
         'umkm_brand_name' => 'required|string|max:255',
         'partner_address' => 'required|string',
-        'event_category_id' => 'required|exists:event_categories,id',
+        'event_category_id' => 'required|exists:event_and_umkm_categories,id',
         'owner_name' => 'required|string|max:255',
-        'whatsapp_number' => 'required|string|max:20',
+        'whatsapp_number' => [
+            'required',
+            'regex:/^(?:\+62|62|0)8[1-9][0-9]{6,11}$/',
+        ],
         'instagram_name' => 'nullable|string|max:255',
         'business_license_number' => 'nullable|string|max:255',
         'brand_photo'  => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
