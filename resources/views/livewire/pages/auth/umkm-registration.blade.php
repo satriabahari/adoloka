@@ -15,7 +15,7 @@
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Kategori Usaha</label>
-                <select wire:model.defer="umkm_category_id"
+                <select wire:key="umkm-category-select" wire:model.defer="umkm_category_id"
                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition bg-white">
                     <option value="" hidden>Pilih kategori</option>
                     @foreach ($umkmCategories as $cat)
@@ -228,7 +228,8 @@
                         // Gunakan lokasi user
                         navigator.geolocation.getCurrentPosition(
                             (position) => {
-                                const userLocation = L.latLng(position.coords.latitude, position.coords.longitude);
+                                const userLocation = L.latLng(position.coords.latitude, position.coords
+                                    .longitude);
                                 if (umkmMap) {
                                     umkmMap.setView(userLocation, 15);
                                     placeUmkmMarker(userLocation);
@@ -479,7 +480,8 @@
 
                                         div.addEventListener('click', function() {
                                             addressInput.value = '';
-                                            addressSuggestions.classList.add('hidden');
+                                            addressSuggestions.classList.add(
+                                                'hidden');
 
                                             const latlng = L.latLng(lat, lon);
                                             umkmMap.setView(latlng, 16);

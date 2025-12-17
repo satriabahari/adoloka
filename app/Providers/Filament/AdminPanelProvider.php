@@ -30,7 +30,6 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->brandName("AdoLoka")
             ->login(false)
-            // ->authGuard('web')
             ->colors([
                 'primary' => Color::Sky,
             ])
@@ -60,7 +59,6 @@ class AdminPanelProvider extends PanelProvider
             // ->authMiddleware([
             //     Authenticate::class,
             // ]);
-
             ->authMiddleware([
                 EnsureUserIsAdmin::class,
             ]);

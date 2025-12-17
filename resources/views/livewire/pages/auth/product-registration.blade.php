@@ -16,7 +16,7 @@
 
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Kategori Produk</label>
-                <select wire:model.defer="product_category_id"
+                <select wire:key="product-category-select" wire:model.defer="product_category_id"
                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition">
                     <option value="" hidden>-- Pilih Kategori --</option>
                     @foreach ($productCategories as $category)
