@@ -19,6 +19,14 @@
       "app.css"
     ]
   },
+  "resources/css/registration.css": {
+    "file": "assets/registration-C714Ge2z.css",
+    "src": "resources/css/registration.css",
+    "isEntry": true,
+    "names": [
+      "registration.css"
+    ]
+  },
   "resources/js/app.js": {
     "file": "assets/app-CN54KEH0.js",
     "name": "app",
