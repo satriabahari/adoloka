@@ -7,6 +7,8 @@ export default defineConfig({
             input: [
                 "resources/css/app.css",
                 "resources/css/registration.css",
+                "resources/css/service.css",
+                "resources/css/modal.css",
                 "resources/js/app.js",
             ],
             refresh: true,

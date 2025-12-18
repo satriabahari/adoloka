@@ -19,12 +19,28 @@
       "app.css"
     ]
   },
+  "resources/css/modal.css": {
+    "file": "assets/modal-CfwONd4E.css",
+    "src": "resources/css/modal.css",
+    "isEntry": true,
+    "names": [
+      "modal.css"
+    ]
+  },
   "resources/css/registration.css": {
     "file": "assets/registration-C714Ge2z.css",
     "src": "resources/css/registration.css",
     "isEntry": true,
     "names": [
       "registration.css"
+    ]
+  },
+  "resources/css/service.css": {
+    "file": "assets/service-B_lNgNLt.css",
+    "src": "resources/css/service.css",
+    "isEntry": true,
+    "names": [
+      "service.css"
     ]
   },
   "resources/js/app.js": {
